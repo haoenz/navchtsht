@@ -1,0 +1,113 @@
+% navi, 基础
+
+# 打开全部 cheatsheet 交互式浏览（依赖 fzf）
+navi
+
+# 预填搜索关键词，打开即按关键词过滤
+navi -q <关键词>
+
+# 按标签过滤，! 开头表示排除
+navi --tag-rules 'navi,!基础'
+
+# 用标签过滤并预填关键词
+navi -q <关键词> --tag-rules 'navi'
+
+% navi, 非交互
+
+# 直接执行最佳匹配（不弹出选择框）
+navi --query <关键词> --best-match
+
+# 只打印片段内容，不执行；适合管道或审查
+navi --print --best-match --query <关键词>
+
+# 用环境变量预设变量值，跳过变量选择
+# 本例把 <owner>、<repo> 直接赋成 denisidoro/cheats
+owner=denisidoro repo=cheats navi --print --query '导入仓库' --best-match
+
+# 打印片段但不做变量替换，便于查看原始模板
+navi --print --prevent-interpolation --best-match --query <关键词>
+
+% navi, 变量
+
+# 变量占位符会被逐个询问取值
+echo '你好，<名字>'
+
+# 变量的候选值来自命令输出（每行一个候选）
+echo '今天是 <日期>'
+
+$ 日期: date +%F
+
+% navi, 仓库
+
+# 从 GitHub 导入仓库（owner/repo 会自动补全为 github.com 地址）
+navi repo add <owner>/<repo>
+
+$ owner: echo denisidoro
+$ repo: echo cheats
+
+# 浏览官方精选的 cheatsheet 仓库并导入
+navi repo browse
+
+# 查看已导入的仓库（就是默认 cheat 目录下的各个子目录）
+ls ~/.local/share/navi/cheats
+
+# 移除已导入的仓库（没有 remove 子命令，直接删目录）
+rm -rf ~/.local/share/navi/cheats/<repo>
+
+$ repo: ls ~/.local/share/navi/cheats 2>/dev/null | head -20
+
+% navi, Shell 集成
+
+# 输出 zsh 组件代码（写入 ~/.zshrc 后可用 Ctrl+G 唤出 navi）
+eval "$(navi widget zsh)"
+
+# 输出 bash 组件代码
+eval "$(navi widget bash)"
+
+# 输出 fish 组件代码
+navi widget fish | source
+
+% navi, 在线源
+
+# 直接检索 tldr-pages 的 cheatsheet（无需本地导入）
+navi --tldr <命令名>
+
+$ 命令名: echo docker
+
+# 直接检索 cheat.sh 的 cheatsheet
+navi --cheatsh <命令名>
+
+$ 命令名: echo tar
+
+% navi, 配置
+
+# 查看配置文件路径
+navi info config-path
+
+# 查看 cheat 文件默认存放目录
+navi info cheats-path
+
+# 输出官方配置样例
+navi info config-example
+
+# 输出 cheat 文件语法样例
+navi info cheats-example
+
+# 临时使用其他目录下的 cheat 文件（冒号分隔可写多个）
+navi --path <目录>
+
+$ 目录: echo ~/文档/haoenz_navi_cheatsheet/cheats
+
+% navi, 编写 cheat
+
+# 标签行：% 开头，逗号分隔，作用于下一个片段
+# 注释行：# 开头，作为列表里的描述
+# 普通行：片段命令，连续多行会依次执行
+# 空行：分隔片段
+navi info cheats-example
+
+# 校验新写的 cheat 文件：只打印、不执行、自动匹配
+navi --path <目录> --print --best-match --query <关键词>
+
+$ 目录: echo ~/文档/haoenz_navi_cheatsheet/cheats
+$ 关键词: echo 标签
