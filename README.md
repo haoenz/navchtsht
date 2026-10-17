@@ -3,7 +3,7 @@
 [![navi](https://img.shields.io/badge/navi-2.24%2B-blue)](https://github.com/denisidoro/navi)
 
 我自己维护的中文 [navi](https://github.com/denisidoro/navi) cheatsheet 仓库。
-第一个 cheat 文件以 **navi 命令本身**为例，边用边查，同时也是编写 cheat 文件的语法参考。
+现有片段覆盖 5 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
 
 两种检索方式并存：
 
@@ -16,8 +16,20 @@
 .
 ├── README.md
 └── cheats/
-    └── navi.cheat    # 以 navi 自身为例的中文速查表
+    ├── navi.cheat     # navi 本身：搜索、变量、仓库、配置
+    ├── ouch.cheat     # 压缩解压：tar、zip、7z、rar、zst 等
+    ├── keifu.cheat    # Git 提交图 TUI
+    ├── glow.cheat     # 终端渲染 markdown
+    └── rich.cheat     # 终端富文本：markdown、CSV、JSON、代码高亮
 ```
+
+| 工具 | 一句话用途 | 典型反查词 |
+| --- | --- | --- |
+| navi | 命令行片段速查表 | 查找命令、工具搜索 |
+| ouch | 压缩与解压 | 解压、打包、zip |
+| keifu | 看 Git 提交图 | 提交图、分支图 |
+| glow | 终端渲染 markdown | 渲染 md、预览 |
+| rich | 终端富文本/表格/高亮 | CSV 表格、语法高亮 |
 
 ## 依赖
 
@@ -124,7 +136,8 @@ eval "$(navi widget zsh)"           # 加载 shell 快捷键组件
 
 ## 新增内容
 
-在 `cheats/` 下新建 `<主题>.cheat`，用 `% 主题` 作为标签即可；文件会被 navi 自动发现，无需注册。
+在 `cheats/` 下新建 `<工具>.cheat`，用 `% 工具, 类别` 作为标签即可；文件会被 navi 自动发现，无需注册。
+工具用途一律先在本机 `<工具> --help` 核实过再写，避免记错参数。
 新增条目按上面的「功能索引写法」组织注释。
 
 提交前做两层验证：

@@ -1,0 +1,22 @@
+% glow, markdown
+
+# 终端看 markdown｜渲染 md、预览、readme
+glow <文件>
+
+# 浏览目录的 md｜笔记列表、TUI、翻找
+glow <目录>
+
+# 分页查看长文｜pager、less、翻页
+glow -p <文件>
+
+# 指定配色样式｜主题、style、dark、light
+glow -s <样式> <文件>
+
+# 控制折行宽度｜width、排版、窄屏
+glow -w <宽度> <文件>
+
+# 编辑 glow 配置｜设置、config、主题默认
+glow config
+
+# 保留原文换行｜-n、preserve、不重排
+glow -n <文件>

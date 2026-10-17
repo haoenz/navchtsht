@@ -1,0 +1,25 @@
+% rich, 终端渲染
+
+# 渲染 markdown｜看 md、美化、预览
+rich -m <文件>
+
+# 代码语法高亮｜着色、syntax、源码
+rich --syntax <文件>
+
+# CSV 显示表格｜表格、对齐、csv
+rich --csv <文件>
+
+# JSON 高亮显示｜格式化、json、查看
+rich -J <文件>
+
+# 终端彩色文本｜markup、颜色、样式
+rich -p '<文本>'
+
+# 画分隔线｜rule、横线、分隔
+rich -u
+
+# 渲染 Jupyter 笔记本｜ipynb、notebook
+rich --ipynb <文件>
+
+# 导出 HTML/SVG｜-o、export、网页
+rich -m <文件> -o <输出>

@@ -1,0 +1,28 @@
+% ouch, 压缩
+
+# 解压压缩包｜解压、解压缩、tar、zip、7z、rar
+ouch decompress <压缩包>
+
+# 压缩打包｜压缩、打包目录、create、tar、zip
+ouch compress <文件> <输出>
+
+# 查看压缩包内容｜列出文件、不解压、list
+ouch list <压缩包>
+
+# 树形列出压缩包｜目录结构、tree、不解压
+ouch list -t <压缩包>
+
+# 解压到指定目录｜-d、输出路径、自定义位置
+ouch decompress <压缩包> -d <目录>
+
+# 解压到当前目录｜--here、就地解压、不建子目录
+ouch decompress <压缩包> --here
+
+# 解压后删除源包｜-r、清理、remove
+ouch decompress <压缩包> --remove
+
+# 指定压缩格式｜-f、format、改后缀生成
+ouch compress -f <格式> <文件> <输出>
+
+# 跳过确认提示｜-y、自动确认、脚本
+ouch decompress <压缩包> -d <目录> -y
