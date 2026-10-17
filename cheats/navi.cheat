@@ -102,7 +102,7 @@ navi info config-example
 # 临时指定 cheat 目录｜自定义路径、多仓库
 navi --path <目录>
 
-$ 目录: echo ~/文档/haoenz_navi_cheatsheet/cheats
+$ 目录: echo ~/文档/navchtsht/cheats
 
 % navi, 编写 cheat, 语法
 
@@ -112,5 +112,5 @@ navi info cheats-example
 # 校验新片段｜只打印匹配、自查、回归测试
 navi --path <目录> --print --best-match --query <关键词>
 
-$ 目录: echo ~/文档/haoenz_navi_cheatsheet/cheats
+$ 目录: echo ~/文档/navchtsht/cheats
 $ 关键词: echo 标签

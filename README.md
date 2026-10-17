@@ -42,7 +42,7 @@
 方式一，临时指定路径（适合先试用）：
 
 ```bash
-navi --path ~/文档/haoenz_navi_cheatsheet/cheats
+navi --path ~/文档/navchtsht/cheats
 ```
 
 方式二，写进配置文件常驻（推荐）。编辑 `~/.config/navi/config.yaml`：
@@ -51,7 +51,7 @@ navi --path ~/文档/haoenz_navi_cheatsheet/cheats
 cheats:
   paths:
     - /home/yiyan/.local/share/navi/cheats
-    - /home/yiyan/文档/haoenz_navi_cheatsheet/cheats
+    - /home/yiyan/文档/navchtsht/cheats
 ```
 
 第一个路径是 navi 默认目录，保留它才能看到 `navi repo add` 导入的仓库。
@@ -61,7 +61,7 @@ cheats:
 方式三，作为仓库导入（推送到远程之后）：
 
 ```bash
-navi repo add <GitHub 用户名>/haoenz_navi_cheatsheet
+navi repo add <GitHub 用户名>/<仓库名>
 ```
 
 ## cheat 文件语法速查
