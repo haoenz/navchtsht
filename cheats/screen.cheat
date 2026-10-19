@@ -1,0 +1,196 @@
+% screen, 会话
+
+# 新建会话｜多路复用、后台保持
+screen
+
+# 新建命名会话｜起名字
+screen -S <名称>
+
+# 后台新建会话并跑命令｜一次性任务、守护
+screen -dmS <名称> <命令>
+
+# 恢复会话｜接管、重连
+screen -r <名称>
+
+# 先剥离再恢复｜强制接管、顶掉旧客户端
+screen -d -r <名称>
+
+# 多客户端共享会话｜协同、同时在线
+screen -x
+
+# 抢占式恢复｜踢掉其他客户端、幂等
+screen -D -RR
+
+# 列出会话｜有哪些、查看
+screen -ls
+
+# 杀掉指定会话｜强制结束、清理
+screen -S <名称> -X quit
+
+% screen, 键位, 会话
+
+# 命令字符说明｜以下键位均以 Ctrl-a 为前缀
+echo 'GNU screen 默认转义键为 Ctrl-a'
+
+# 分离会话｜挂起、放后台（Ctrl-a d）
+screen -d
+
+# 强力分离会话｜含注销远端（Ctrl-a D D）
+screen -d -r
+
+# 新建窗口｜加一屏（Ctrl-a c）
+screen
+
+# 下一个或上一个窗口｜切换（Ctrl-a n / Ctrl-a p）
+echo 'Ctrl-a n 下一窗口, Ctrl-a p 上一窗口'
+
+# 回到上一个窗口｜来回切换（Ctrl-a Ctrl-a）
+echo 'Ctrl-a Ctrl-a'
+
+# 按编号选窗口｜跳转（Ctrl-a 0-9）
+echo 'Ctrl-a 数字'
+
+# 窗口列表选择｜逐个选（Ctrl-a '）
+echo "Ctrl-a '"
+
+# 全屏窗口列表｜浏览、预览（Ctrl-a "）
+echo 'Ctrl-a "'
+
+# 底部窗口名列表｜一览（Ctrl-a w）
+echo 'Ctrl-a w'
+
+# 重命名当前窗口｜改名（Ctrl-a A）
+echo 'Ctrl-a A'
+
+% screen, 键位, 面板
+
+# 纵向分屏｜上下切（Ctrl-a S）
+echo 'Ctrl-a S'
+
+# 纵向分屏新版｜左右切（Ctrl-a |）
+echo 'Ctrl-a |'
+
+# 切换区域焦点｜移动光标（Ctrl-a Tab）
+echo 'Ctrl-a Tab'
+
+# 删除当前区域｜收起分屏（Ctrl-a X）
+echo 'Ctrl-a X'
+
+# 只保留当前区域｜关闭其余（Ctrl-a Q）
+echo 'Ctrl-a Q'
+
+# 重新适配区域｜终端尺寸变了（Ctrl-a F）
+echo 'Ctrl-a F'
+
+# 杀掉当前窗口｜彻底关闭（Ctrl-a k）
+echo 'Ctrl-a k'
+
+% screen, 键位, 复制
+
+# 进入复制模式｜翻历史、选择（Ctrl-a [）
+echo 'Ctrl-a ['
+
+# 粘贴缓冲｜贴回（Ctrl-a ]）
+echo 'Ctrl-a ]'
+
+# 复制模式等价键｜进入（Ctrl-a Esc）
+echo 'Ctrl-a Esc'
+
+# 缓冲写出到文件｜导出（Ctrl-a >）
+echo 'Ctrl-a >'
+
+# 从文件读入缓冲｜导入（Ctrl-a <）
+echo 'Ctrl-a <'
+
+# 清空粘贴缓冲｜清理（Ctrl-a =）
+echo 'Ctrl-a ='
+
+% screen, 键位, 其他
+
+# 锁定终端｜密码保护（Ctrl-a x）
+echo 'Ctrl-a x'
+
+# 帮助键位总览｜查全部（Ctrl-a ?）
+echo 'Ctrl-a ?'
+
+# 命令提示符｜直接敲 screen 命令（Ctrl-a :）
+echo 'Ctrl-a :'
+
+# 当前窗口信息｜详情（Ctrl-a i）
+echo 'Ctrl-a i'
+
+# 显示上次消息｜回顾提示（Ctrl-a m）
+echo 'Ctrl-a m'
+
+# 重绘屏幕｜花屏修复（Ctrl-a l）
+echo 'Ctrl-a l'
+
+# 挂起 screen｜丢后台（Ctrl-a z）
+echo 'Ctrl-a z'
+
+# 完全退出｜杀全部窗口（Ctrl-a Ctrl-\）
+echo 'Ctrl-a Ctrl-\'
+
+# 硬拷贝当前屏到文件｜截图、快照（Ctrl-a h）
+echo 'Ctrl-a h'
+
+# 开关输出日志｜记录会话（Ctrl-a H）
+echo 'Ctrl-a H'
+
+# 静默监测窗口活动｜有输出提醒（Ctrl-a M）
+echo 'Ctrl-a M'
+
+# 监测窗口静默｜空闲提醒（Ctrl-a _）
+echo 'Ctrl-a _'
+
+# 查看版本｜版本号（Ctrl-a v）
+echo 'Ctrl-a v'
+
+# 列出其他显示终端｜多屏会话（Ctrl-a *）
+echo 'Ctrl-a *'
+
+# 回到上一条消息处｜滚动提示（Ctrl-a C-m）
+echo 'Ctrl-a C-m'
+
+% screen, 命令行, 远程控制
+
+# 向会话注入按键｜自动化、模拟输入
+screen -S <会话> -X stuff $'<文本>\n'
+
+# 向会话发命令｜免进入、远程操作
+screen -S <会话> -X <命令>
+
+# 远程重命名窗口｜改名
+screen -S <会话> -X title <名称>
+
+# 远程调整宽度｜适配、冷门
+screen -S <会话> -X width -w <列数>
+
+# 组合多条命令一次执行｜批量、冷门
+screen -S <会话> -X eval 'stuff "ls\n"' 'title 工作'
+
+# 查询会话并回显｜取值、脚本用、冷门
+screen -S <会话> -Q echo <表达式>
+
+# 附加前切换目录｜chdir、冷门
+screen -S <会话> -X chdir <目录>
+
+% screen, 配置, 冷门
+
+# 开日志启动会话｜自动记录输出
+screen -L
+
+# 指定配置文件启动｜备用 screenrc
+screen -c <文件>
+
+# 换转义键配置｜避开 Ctrl-a 冲突
+echo "escape ^Zz  >> ~/.screenrc"
+
+# 底部状态栏配置｜hardstatus、好看
+echo 'hardstatus alwayslastline "%w"' >> ~/.screenrc
+
+# 设置会话锁密码｜password、冷门
+echo 'password <加密串>' >> ~/.screenrc
+
+# 设置缓冲区大小｜scrollback、加历史
+echo 'defscrollback 10000' >> ~/.screenrc

@@ -4,7 +4,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 我自己维护的中文 [navi](https://github.com/denisidoro/navi) cheatsheet 仓库。
-现有片段覆盖 12 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
+现有片段覆盖 13 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
 
 两种检索方式并存：
 
@@ -28,7 +28,8 @@
     ├── tokei.cheat    # 代码统计：行数、语言构成
     ├── herdr.cheat    # AI agent 终端工作区：会话、面板、agent、远程
     ├── zellij.cheat   # 终端多路复用：会话、面板、布局、插件
-    └── tmux.cheat     # 终端多路复用：会话、窗口、面板、复制模式
+    ├── tmux.cheat     # 终端多路复用：会话、窗口、面板、复制模式
+    └── screen.cheat   # 终端多路复用：C-a 键位、远程控制
 ```
 
 | 工具 | 一句话用途 | 典型反查词 |
@@ -45,6 +46,7 @@
 | herdr | 面向 AI agent 的终端工作区 | AI 代理、面板分屏、远程、agent 管理 |
 | zellij | 终端多路复用 | 分屏、浮动面板、布局、会话 |
 | tmux | 终端多路复用 | 分屏、会话、复制模式、快捷键 |
+| screen | 终端多路复用 | 恢复会话、分屏、C-a 键位、远程控制 |
 
 ## 依赖
 
