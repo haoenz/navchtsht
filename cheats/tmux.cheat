@@ -1,0 +1,269 @@
+% tmux, 会话
+
+# 新建命名会话｜多路复用、后台保持
+tmux new -s <名称>
+
+# 新建分离会话｜后台启动、不进终端
+tmux new -d -s <名称>
+
+# 新建或附加｜存在即接管、幂等进入
+tmux new -A -s <名称>
+
+# 附加到指定会话｜恢复、接管
+tmux attach -t <名称>
+
+# 附加到最近会话｜快速恢复
+tmux attach
+
+# 列出会话｜有哪些、查看
+tmux ls
+
+# 杀掉指定会话｜结束、清理
+tmux kill-session -t <名称>
+
+# 杀掉除当前外全部会话｜批量清理
+tmux kill-session -a
+
+# 检查会话是否存在｜脚本判断、条件
+tmux has-session -t <名称>
+
+# 重命名会话｜改名
+tmux rename-session -t <旧名> <新名>
+
+# 剥离会话｜挂起、放后台
+tmux detach-client -s <名称>
+
+# 踢掉其他客户端｜独占、单会话
+tmux detach-client -a
+
+% tmux, 快捷键, 会话
+
+# 分离会话｜挂起、放后台（快捷键）
+tmux detach-client
+
+# 浏览并选择会话｜会话列表、切换
+tmux choose-tree -s
+
+# 重命名会话｜改名（快捷键）
+tmux rename-session -t <新名>
+
+# 切到上一个会话｜来回切换
+tmux switch-client -p
+tmux switch-client -n
+
+% tmux, 窗口, window
+
+# 新建窗口｜加一屏、多窗口
+tmux new-window -t <会话>: -n <名称>
+
+# 命令行新建窗口并跑命令｜启动即执行
+tmux new-window -n <名称> '<命令>'
+
+# 列出窗口｜有哪些
+tmux list-windows -t <会话>
+
+# 重命名窗口｜改名
+tmux rename-window -t <会话>:<编号> <新名>
+
+# 杀掉窗口｜关闭、清理
+tmux kill-window -t <会话>:<编号>
+
+# 移动窗口到别的会话｜搬运、重组
+tmux move-window -s <源>:<编号> -t <目标>:
+
+# 建立窗口链接副本｜同屏两处、冷门
+tmux link-window -s <源>:<编号> -t <目标>:
+
+# 交换两个窗口位置｜对调、排序
+tmux swap-window -s <编号1> -t <编号2>
+
+% tmux, 快捷键, 窗口
+
+# 新建窗口｜加一屏（快捷键）
+tmux new-window
+
+# 下一个或上一个窗口｜切换（快捷键）
+tmux next-window
+tmux previous-window
+
+# 按编号选窗口｜跳转（快捷键，接 0-9）
+tmux select-window -t :<编号>
+
+# 窗口列表选择｜预览、切换（快捷键）
+tmux choose-window
+
+# 重命名窗口｜改名（快捷键）
+tmux rename-window <新名>
+
+# 按关键字搜窗口｜查找（快捷键）
+tmux find-window '<关键字>'
+
+# 杀掉当前窗口｜关闭（快捷键，需确认）
+tmux kill-window
+
+% tmux, 面板, pane
+
+# 纵向分屏｜左右、竖切
+tmux split-window -h
+
+# 横向分屏｜上下、横切
+tmux split-window -v
+
+# 新建面板并跑命令｜启动即执行
+tmux split-window '<命令>'
+
+# 按路径新建面板｜同目录、指定 cwd
+tmux split-window -c <目录>
+
+# 列出面板｜有哪些、含编号
+tmux list-panes -t <会话>:<窗口>
+
+# 关闭面板｜删掉
+tmux kill-pane -t <会话>:<窗口>.<编号>
+
+# 调整面板大小｜拉伸（每次 10 格）
+tmux resize-pane -t <编号> -D 10
+
+# 全方向调整面板大小｜precise、五键语法
+tmux resize-pane -t <编号> -U 5 -D 5 -L 10 -R 10
+
+# 聚焦指定面板｜切换焦点
+tmux select-pane -t <会话>:<窗口>.<编号>
+
+# 给面板设标题｜命名、标记
+tmux select-pane -t <编号> -T <标题>
+
+# 交换两个面板｜对调位置
+tmux swap-pane -s <编号1> -t <编号2>
+
+# 面板轮转｜整体转一圈
+tmux rotate-window
+
+# 面板升级为独立窗口｜拆出、独立
+tmux break-pane -t <编号>
+
+# 把窗口面板合并进来｜拼合、反向拆分
+tmux join-pane -s <源>:<窗口>.<编号> -t <目标>:<窗口>
+
+# 全部面板同步输入｜广播、批量敲命令
+tmux set-window-option -t <窗口> synchronize-panes on
+
+# 套用预设布局｜even、main、tiled
+tmux select-layout -t <窗口> <布局>
+
+$ 布局: printf '%s\n' even-horizontal even-vertical main-horizontal main-vertical tiled
+
+# 抓取面板内容｜导出输出、日志
+tmux capture-pane -p -t <会话>:<窗口>.<编号>
+
+# 重启面板进程｜崩溃恢复、重跑
+tmux respawn-pane -k -t <编号> '<命令>'
+
+# 面板输出重定向到命令｜记录日志、冷门
+tmux pipe-pane -o -t <编号> 'cat >> ~/tmux-#I-#P.log'
+
+% tmux, 快捷键, 面板
+
+# 纵向分屏｜左右（快捷键）
+tmux split-window -h
+
+# 横向分屏｜上下（快捷键）
+tmux split-window -v
+
+# 依次切面板｜轮转焦点（快捷键）
+tmux select-pane -t :.+
+
+# 显示面板编号｜对照、找编号（快捷键）
+tmux display-panes
+
+# 最大化面板｜占满（快捷键，再按还原）
+tmux resize-pane -Z
+
+# 面板对调位置｜交换（快捷键）
+tmux swap-pane -D
+
+# 拆出为独立窗口｜升级（快捷键）
+tmux break-pane
+
+# 套用预设布局｜循环切换（快捷键）
+tmux next-layout
+
+% tmux, 复制, 粘贴
+
+# 进入复制模式｜翻历史、选择文本（快捷键）
+tmux copy-mode
+
+# 退出复制模式｜返回（快捷键，复制模式内）
+tmux copy-mode -q
+
+# 用 vi 键位复制｜hjkl、space 选、y 复制
+tmux set-window-option -g mode-keys vi
+
+# 粘贴缓冲｜贴回（快捷键）
+tmux paste-buffer
+
+# 列出粘贴缓冲｜有哪些内容
+tmux list-buffers
+
+# 查看缓冲内容｜打印
+tmux show-buffer -b <编号>
+
+# 缓冲保存到文件｜导出
+tmux save-buffer -b <编号> <文件>
+
+# 删除缓冲｜清理
+tmux delete-buffer -b <编号>
+
+% tmux, 配置, 冷门
+
+# 重载配置｜立即生效
+tmux source-file ~/.tmux.conf
+
+# 查看全局选项｜有哪些设置
+tmux show-options -g
+
+# 查看全局窗口选项｜设置
+tmux show-window-options -g
+
+# 开鼠标支持｜滚轮、点击选择
+tmux set -g mouse on
+
+# 锁定会话｜上锁、离开时保护
+tmux lock-session
+
+# 列出全部键位｜快捷键大全、查找绑定
+tmux list-keys
+
+# 列出当前客户端｜谁在连
+tmux list-clients
+
+# 切换客户端到别的会话｜跳转
+tmux switch-client -t <会话>
+
+# 显示格式变量值｜取状态、脚本用
+tmux display-message -p '#{session_name}:#{window_index}.#{pane_index}'
+
+# 等待其他会话信号｜同步、构建编排、冷门
+tmux wait-for -S <通道>
+tmux wait-for <通道>
+
+# 在服务端执行 shell｜自动化、冷门
+tmux run-shell '<命令>'
+
+# 转储服务端内部状态｜排错、冷门
+tmux info
+
+# 给事件挂钩子｜自动化、触发器、冷门
+tmux set-hook -g after-split-window 'resize-pane -Z'
+
+# 停止 tmux 服务端｜全部会话关闭、清场
+tmux kill-server
+
+# 启动空服务端不建会话｜预热、冷门
+tmux start-server
+
+# 向指定面板发送按键｜自动化、模拟操作
+tmux send-keys -t <会话>:<窗口>.<编号> '<文本>' Enter
+
+# 锁定整个服务端｜全部会话上锁
+tmux lock-server
