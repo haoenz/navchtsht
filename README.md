@@ -3,7 +3,7 @@
 [![navi](https://img.shields.io/badge/navi-2.24%2B-blue)](https://github.com/denisidoro/navi)
 
 我自己维护的中文 [navi](https://github.com/denisidoro/navi) cheatsheet 仓库。
-现有片段覆盖 5 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
+现有片段覆盖 9 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
 
 两种检索方式并存：
 
@@ -17,17 +17,25 @@
 ├── README.md
 └── cheats/
     ├── navi.cheat     # navi 本身：搜索、变量、仓库、配置
+    ├── git.cheat      # git 本身：日常、分支、远程、撤销、冷门子命令
+    ├── zsh-git.cheat  # oh-my-zsh git 插件 alias：按缩写反查
     ├── ouch.cheat     # 压缩解压：tar、zip、7z、rar、zst 等
     ├── keifu.cheat    # Git 提交图 TUI
+    ├── difit.cheat    # 浏览器里的 Git diff 查看器
     ├── glow.cheat     # 终端渲染 markdown
-    └── rich.cheat     # 终端富文本：markdown、CSV、JSON、代码高亮
+    ├── rich.cheat     # 终端富文本：markdown、CSV、JSON、代码高亮
+    └── tokei.cheat    # 代码统计：行数、语言构成
 ```
 
 | 工具 | 一句话用途 | 典型反查词 |
 | --- | --- | --- |
 | navi | 命令行片段速查表 | 查找命令、工具搜索 |
+| git | 版本控制本身 | 变基、撤销、找回提交、子模块、历史改写 |
+| zsh-git | oh-my-zsh git 插件 alias 速查 | gst、gco、alias 反查 |
+| tokei | 代码行数统计 | 代码统计、行数、语言构成 |
 | ouch | 压缩与解压 | 解压、打包、zip |
 | keifu | 看 Git 提交图 | 提交图、分支图 |
+| difit | 浏览器里看 Git diff、审 PR | 查看差异、代码审查、PR 审查 |
 | glow | 终端渲染 markdown | 渲染 md、预览 |
 | rich | 终端富文本/表格/高亮 | CSV 表格、语法高亮 |
 
