@@ -4,7 +4,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 我自己维护的中文 [navi](https://github.com/denisidoro/navi) cheatsheet 仓库。
-现有片段覆盖 9 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
+现有片段覆盖 10 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
 
 两种检索方式并存：
 
@@ -25,7 +25,8 @@
     ├── difit.cheat    # 浏览器里的 Git diff 查看器
     ├── glow.cheat     # 终端渲染 markdown
     ├── rich.cheat     # 终端富文本：markdown、CSV、JSON、代码高亮
-    └── tokei.cheat    # 代码统计：行数、语言构成
+    ├── tokei.cheat    # 代码统计：行数、语言构成
+    └── herdr.cheat    # AI agent 终端工作区：会话、面板、agent、远程
 ```
 
 | 工具 | 一句话用途 | 典型反查词 |
@@ -39,6 +40,7 @@
 | difit | 浏览器里看 Git diff、审 PR | 查看差异、代码审查、PR 审查 |
 | glow | 终端渲染 markdown | 渲染 md、预览 |
 | rich | 终端富文本/表格/高亮 | CSV 表格、语法高亮 |
+| herdr | 面向 AI agent 的终端工作区 | AI 代理、面板分屏、远程、agent 管理 |
 
 ## 依赖
 

@@ -1,0 +1,274 @@
+% herdr, 基础
+
+# 启动或接管常驻会话｜主入口、进入 herdr
+herdr
+
+# 查看客户端与服务端状态｜诊断、运行情况
+herdr status
+
+# 只看服务端状态｜服务器、诊断
+herdr status server
+
+# 只看客户端状态｜诊断
+herdr status client
+
+# 打印版本号｜版本、检查更新
+herdr --version
+
+# 打印默认配置｜默认配置、参考模板
+herdr --default-config
+
+# 打印 agent 技能文件｜skill、给 AI 用
+herdr --skill
+
+# 生成 shell 补全｜补全脚本、zsh 补全
+herdr completion <shell>
+
+$ shell: printf '%s\n' zsh bash fish
+
+% herdr, 会话, session
+
+# 新建或使用命名会话｜持久会话、多会话
+herdr --session <名称>
+
+# 列出会话｜有哪些会话
+herdr session list
+
+# 附加到指定会话｜接管、进入
+herdr session attach <名称>
+
+# 停止会话｜关闭、结束
+herdr session stop <名称>
+
+# 删除已停止的会话｜清理、删掉
+herdr session delete <名称>
+
+% herdr, 标签页, tab
+
+# 列出标签页｜有哪些 tab
+herdr tab list
+
+# 新建标签页｜添加 tab
+herdr tab create
+
+# 查看某个标签页｜详情
+herdr tab get <id>
+
+# 聚焦标签页｜切换、跳转
+herdr tab focus <id>
+
+# 重命名标签页｜改名
+herdr tab rename <id> <名称>
+
+# 关闭标签页｜删掉、移除
+herdr tab close <id>
+
+% herdr, 面板, pane
+
+# 列出面板｜有哪些 pane
+herdr pane list
+
+# 显示当前面板｜焦点在哪
+herdr pane current
+
+# 查看面板布局信息｜结构、排布
+herdr pane layout
+
+# 查看面板进程信息｜跑了什么、PID
+herdr pane process-info <id>
+
+# 纵向分屏｜上下分、垂直切
+herdr pane split <id> --direction down
+
+# 横向分屏｜左右分、水平切
+herdr pane split <id> --direction right
+
+# 聚焦相邻面板｜移动焦点、切换面板
+herdr pane focus --direction <方向>
+
+$ 方向: printf '%s\n' up down left right
+
+# 调整面板大小｜拉伸、缩放
+herdr pane resize --direction <方向> --pane <id>
+
+# 缩放面板｜最大化、全屏切换
+herdr pane zoom <id>
+
+# 读取面板输出｜抓取内容、回显
+herdr pane read <id>
+
+# 重命名面板｜改名
+herdr pane rename <id> <名称>
+
+# 交换面板位置｜对调
+herdr pane swap <id> <id>
+
+# 移动面板｜挪动
+herdr pane move <id> <方向>
+
+# 关闭面板｜删掉
+herdr pane close <id>
+
+# 向面板发送文本｜输入文字、模拟键入
+herdr pane send-text <id> <文本>
+
+# 向面板发送按键｜回车、控制键、模拟按键
+herdr pane send-keys <id> <按键>
+
+# 等待面板出现匹配输出｜同步、等待完成
+herdr pane wait-output <id> --match <文本>
+
+# 在面板中运行命令｜执行、启动
+herdr pane run <id> <命令>
+
+# 上报面板 agent 生命周期状态｜agent 状态、冷门
+herdr pane report-agent <id> <状态>
+
+# 释放面板 agent 管辖权｜冷门、高级
+herdr pane release-agent <id>
+
+# 上报展示用面板元数据｜冷门、高级
+herdr pane report-metadata <id>
+
+% herdr, agent, AI
+
+# 列出 agent｜有哪些 AI、代理
+herdr agent list
+
+# 查看 agent 详情｜状态、信息
+herdr agent get <id>
+
+# 读取 agent 终端输出｜抓取内容
+herdr agent read <id>
+
+# 向 agent 发送按键｜模拟键入
+herdr agent send-keys <id> <按键>
+
+# 向 agent 提交 prompt｜下达指令、发任务
+herdr agent prompt <id> <内容>
+
+# 重命名 agent｜改名
+herdr agent rename <id> <名称>
+
+# 聚焦 agent｜切换到
+herdr agent focus <id>
+
+# 等待 agent 达到指定状态｜阻塞等待、同步
+herdr agent wait <id> <状态>
+
+# 直连 agent 终端｜接管、附加
+herdr agent attach <id>
+
+# 在现有面板启动交互式 agent｜新建 AI、运行
+herdr agent start <名称> --kind <agent类型> --pane <id>
+
+# 解释 agent 识别状态｜排错、为什么没识别
+herdr agent explain
+
+% herdr, 工作区, workspace
+
+# 列出工作区｜有哪些
+herdr workspace list
+
+# 新建工作区｜添加
+herdr workspace create --label <名称>
+
+# 聚焦工作区｜切换、跳转
+herdr workspace focus <名称>
+
+# 重命名工作区｜改名
+herdr workspace rename <名称> <新名称>
+
+# 关闭工作区｜移除、删掉
+herdr workspace close <名称>
+
+% herdr, worktree, git
+
+# 列出 worktree 工作区｜有哪些
+herdr worktree list
+
+# 新建并打开 git worktree｜并行开发、多分支
+herdr worktree create <名称>
+
+# 打开已有 worktree｜接入
+herdr worktree open <名称>
+
+# 移除 worktree 检出｜清理
+herdr worktree remove <名称>
+
+% herdr, 远程, ssh
+
+# 列出已保存的 SSH 机器｜有哪些远程
+herdr machine list
+
+# 免交互检查已保存机器｜连通性、不掉凭证
+herdr machine status
+
+# 在本终端重新认证并验证机器｜重连、输密码
+herdr machine reconnect <机器>
+
+# 准备远程服务端并保存 SSH 机器｜添加远程
+herdr machine add
+
+# 重命名已保存机器｜改名
+herdr machine rename <机器> <新名称>
+
+# 移除已保存机器｜删掉
+herdr machine remove <机器>
+
+# 启用机器｜开关
+herdr machine enable <机器>
+
+# 禁用机器｜开关
+herdr machine disable <机器>
+
+# 通过 SSH 附加到远程 herdr｜远程接管
+herdr --remote <目标>
+
+# 在远程机器上执行 API 命令｜远程操作
+herdr --machine <机器> <命令>
+
+% herdr, 服务端, 更新
+
+# 下载并安装最新版｜升级、自更新
+herdr update
+
+# 带现场交接的更新｜不断连、保活
+herdr update --handoff
+
+# 查看当前更新通道｜stable、preview
+herdr channel show
+
+# 切换更新通道｜稳定版、预览版
+herdr channel set <通道>
+
+$ 通道: printf '%s\n' stable preview
+
+# 停止服务端｜关掉后台
+herdr server stop
+
+# 热重载配置｜配置生效、不重启
+herdr server reload-config
+
+% herdr, 配置, 调试
+
+# 校验配置并输出诊断｜检查 config.toml
+herdr config check
+
+# 备份配置并清除自定义键位｜按键恢复默认
+herdr config reset-keys
+
+# 打印实时会话快照｜全量状态、调试
+herdr api snapshot
+
+# 打印或导出 API schema｜接口定义、开发
+herdr api schema
+
+# 安装集成｜接入编辑器、hook
+herdr integration install <名称>
+
+# 卸载集成｜移除
+herdr integration uninstall <名称>
+
+# 查看集成状态｜装没装
+herdr integration status
