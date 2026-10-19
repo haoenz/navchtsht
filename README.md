@@ -1,6 +1,7 @@
 # navi 中文速查表
 
 [![navi](https://img.shields.io/badge/navi-2.24%2B-blue)](https://github.com/denisidoro/navi)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 我自己维护的中文 [navi](https://github.com/denisidoro/navi) cheatsheet 仓库。
 现有片段覆盖 9 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
@@ -160,4 +161,4 @@ navi --path cheats --print --best-match --query '卸载' < /dev/null
 
 ## 许可
 
-个人使用，未附带许可证。
+本项目以 [GPLv3](./LICENSE) 协议发布。
