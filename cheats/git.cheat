@@ -1,0 +1,411 @@
+% git, 基础, 日常
+
+# 初始化仓库、新建仓库、init
+git init
+
+# 克隆仓库、下载仓库、clone
+git clone <url>
+
+# 查看状态、当前改动、status
+git status
+
+# 简短状态、一行状态、分支跟踪信息
+git status -sb
+
+# 暂存单个文件、add 指定文件
+git add <文件>
+
+$ 文件: git ls-files
+
+# 暂存全部改动、add 所有、全部加入
+git add -A
+
+# 交互式暂存、逐块暂存、选择性 add
+git add -p
+
+# 提交、commit、保存快照
+git commit -m "<说明>"
+
+# 提交已跟踪文件、跳过 add、commit -a
+git commit -am "<说明>"
+
+# 修补上次提交、追加改动、amend 内容
+git commit --amend --no-edit
+
+# 修改上次提交说明、改 commit message
+git commit --amend -m "<新说明>"
+
+# 推送、push、上传提交
+git push
+
+# 拉取、pull、更新本地
+git pull
+
+% git, 分支
+
+# 列出分支、本地分支、branch 列表
+git branch
+
+# 列出所有分支、含远程分支
+git branch -a
+
+# 创建分支、新建分支
+git branch <分支>
+
+# 切换分支、switch、转到分支
+git switch <分支>
+
+# 创建并切换、新分支开工、switch -c
+git switch -c <分支>
+
+# 回到上一分支、切回刚才分支、switch -
+git switch -
+
+# 删除分支、已合并分支清理
+git branch -d <分支>
+
+# 强制删除分支、未合并也删
+git branch -D <分支>
+
+# 合并分支、merge、并入当前分支
+git merge <分支>
+
+# 合并保留合并节点、no-ff 显式 merge commit
+git merge --no-ff <分支>
+
+# 放弃合并、退出合并冲突
+git merge --abort
+
+# 变基、rebase、线性历史
+git rebase <目标分支>
+
+# 交互式变基、整理提交、squash 压缩
+git rebase -i HEAD~<N>
+
+# 变基到新基底、移植分支、rebase --onto
+git rebase --onto <新基底> <旧基底> <分支>
+
+# 摘取提交、cherry-pick、复制单个提交
+git cherry-pick <提交>
+
+# 摘取不提交、cherry-pick 只进暂存区
+git cherry-pick -n <提交>
+
+$ 分支: git branch --format '%(refname:short)'
+$ 提交: git log --oneline -20
+
+% git, 远程
+
+# 查看远程、远程地址列表、remote -v
+git remote -v
+
+# 添加远程、绑定远程仓库
+git remote add <名称> <url>
+
+# 重命名远程、改远程名
+git remote rename <旧名称> <新名称>
+
+# 删除远程、解除绑定
+git remote remove <名称>
+
+# 抓取不合并、fetch、只下载更新
+git fetch <远程>
+
+# 抓取并清理、prune 清失效远程分支引用
+git fetch --prune
+
+# 拉取并变基、避免多余合并节点
+git pull --rebase
+
+# 首次推送、设置上游、push -u
+git push -u <远程> <分支>
+
+# 安全强推、force-with-lease、检查后覆盖
+git push --force-with-lease
+
+# 删除远程分支、推删分支
+git push <远程> --delete <分支>
+
+# 列出远程引用、直接看远程状态
+git ls-remote <远程>
+
+$ 远程: git remote
+
+% git, 撤销, 修复
+
+# 丢弃工作区改动、恢复文件、restore
+git restore <文件>
+
+# 取消暂存、unstage、移出暂存区
+git restore --staged <文件>
+
+# 软回退、改动保留在暂存区
+git reset --soft HEAD~1
+
+# 回退并取消暂存、改动留在工作区
+git reset HEAD~1
+
+# 硬回退、丢弃全部改动、危险
+git reset --hard HEAD~1
+
+# 回退到指定提交、reset 到 commit
+git reset --hard <提交>
+
+# 反做提交、安全撤销、生成新提交
+git revert <提交>
+
+# 撤销合并提交、revert -m 主线撤销 merge
+git revert -m 1 <合并提交>
+
+# 找回丢失提交、操作记录、后悔药
+git reflog
+
+# 回到 reflog 记录位置、恢复误删提交
+git reset --hard HEAD@{<序号>}
+
+# 中止变基、rebase 出问题退出
+git rebase --abort
+
+# 继续变基、解决冲突后接着
+git rebase --continue
+
+# 预览清理、看会删哪些未跟踪文件
+git clean -nd
+
+# 删除未跟踪文件、清空工作区
+git clean -fd
+
+# 连忽略文件一起清、深度清理预览
+git clean -ndx
+
+$ 提交: git log --oneline -20
+
+% git, 查看, 历史
+
+# 图形日志、一行日志、全部分支图
+git log --oneline --graph --all --decorate
+
+# 最近几条提交、限定条数
+git log -n <条数>
+
+# 带改动日志、每个提交的 diff
+git log -p <文件>
+
+# 搜索提交说明、按文字找提交
+git log --grep "<关键词>"
+
+# 找代码何时引入、pickaxe 增删历史
+git log -S "<代码片段>" --oneline
+
+# 未暂存差异、工作区对比
+git diff
+
+# 暂存区差异、已 add 的改动
+git diff --staged
+
+# 对比任意提交、两个分支差异
+git diff <提交或分支>..<提交或分支>
+
+# 差异统计、改动文件列表
+git diff --stat
+
+# 查看提交内容、单个 commit 详情
+git show <提交>
+
+# 行级追责、谁改的、逐行作者
+git blame -L <起始>,<结束> <文件>
+
+# 仓库内搜代码、按内容搜文件
+git grep -n "<关键词>"
+
+# 贡献统计、按作者排名
+git shortlog -sn --no-merges
+
+# 最近标签描述、版本号推断
+git describe --tags
+
+# 对比补丁系列、rebase 前后变化
+git range-diff <基点> <分支旧> <分支新>
+
+# 查看改动前位置、变基合并前的 HEAD
+git show ORIG_HEAD
+
+$ 提交: git log --oneline -20
+
+% git, 暂存, stash
+
+# 收藏工作区、临时存起来、带说明
+git stash push -m "<说明>"
+
+# 含未跟踪文件、新文件也存 stash
+git stash push -u -m "<说明>"
+
+# 列出 stash、查看收藏列表
+git stash list
+
+# 恢复不删除、取出来还留着
+git stash apply stash@{<序号>}
+
+# 恢复并删除、取出最新收藏
+git stash pop
+
+# 删除指定 stash、丢弃收藏
+git stash drop stash@{<序号>}
+
+# 从 stash 建分支、冲突时用
+git stash branch <分支> stash@{<序号>}
+
+% git, 标签, tag
+
+# 列出标签、tag 列表
+git tag
+
+# 按模式筛标签、模糊查标签
+git tag -l "<模式>"
+
+# 打附注标签、正式版本、annotated
+git tag -a <标签> -m "<说明>"
+
+# 删除本地标签
+git tag -d <标签>
+
+# 推送所有标签
+git push <远程> --tags
+
+# 推送单个标签
+git push <远程> <标签>
+
+# 删除远程标签、推删 tag
+git push <远程> --delete <标签>
+
+% git, 调试, bisect
+
+# 开始二分定位、找引入 bug 的提交
+git bisect start
+
+# 标记当前版本有 bug
+git bisect bad
+
+# 标记正常版本、指定已知好的提交
+git bisect good <提交或标签>
+
+# 结束二分、回到原分支
+git bisect reset
+
+# 自动二分、用脚本判定好坏
+git bisect run <测试命令>
+
+% git, 工作树, worktree
+
+# 新建工作树、多目录并行开发
+git worktree add <路径> <分支>
+
+# 列出工作树、查看所有分身
+git worktree list
+
+# 删除工作树、移除目录
+git worktree remove <路径>
+
+# 清理失效工作树、目录被手删后
+git worktree prune
+
+% git, 子模块, submodule
+
+# 添加子模块、嵌套仓库
+git submodule add <url> <路径>
+
+# 克隆含子模块、一次拉全
+git clone --recurse-submodules <url>
+
+# 初始化并更新子模块、递归拉取
+git submodule update --init --recursive
+
+% git, 历史改写, 危险
+
+# 从历史删除大文件、改写全部提交
+git filter-branch --tree-filter 'rm -f <文件>' -- --all
+
+# 只保留子目录历史、拆分仓库
+git filter-branch --subdirectory-filter <目录> -- --all
+
+# 从历史彻底删文件、需另装 filter-repo
+git filter-repo --invert-paths --path <文件>
+
+# 从第一个提交开始变基、改远古提交
+git rebase -i --root
+
+# 给提交附加备注、不改哈希
+git notes add -m "<备注>" <提交>
+
+% git, 高级, 冷门
+
+# 开启 rerere、自动复用冲突解法
+git config --global rerere.enabled true
+
+# 查看 rerere 记录、冲突解决状态
+git rerere status
+
+# 打包仓库、离线传输、单文件
+git bundle create <文件>.bundle --all
+
+# 从 bundle 克隆、离线恢复仓库
+git clone <文件>.bundle <目录>
+
+# 导出归档、打包源码、不含 .git
+git archive --format=zip -o <文件>.zip HEAD
+
+# 检查仓库完整性、找悬空对象
+git fsck --full
+
+# 垃圾回收、压缩瘦身
+git gc
+
+# 查看仓库大小、对象统计
+git count-objects -vH
+
+# 后台维护、自动定期优化
+git maintenance start
+
+# 查文件为何被忽略、定位 gitignore 规则
+git check-ignore -v <文件>
+
+# 本地忽略已跟踪文件改动、配置文件用
+git update-index --assume-unchanged <文件>
+
+# 恢复跟踪上述文件、取消忽略
+git update-index --no-assume-unchanged <文件>
+
+# 列出被忽略的文件
+git ls-files --others --ignored --exclude-standard
+
+# 显示仓库根目录、子目录里也能查
+git rev-parse --show-toplevel
+
+# 查看对象内容、底层读取
+git cat-file -p <哈希>
+
+# 稀疏检出、只取部分目录
+git sparse-checkout set <目录>
+
+% git, 配置, 别名
+
+# 设置全局用户名、身份配置
+git config --global user.name "<名字>"
+
+# 设置全局邮箱
+git config --global user.email "<邮箱>"
+
+# 设置默认分支名、新仓库用 main
+git config --global init.defaultBranch main
+
+# pull 默认变基、避免多余合并节点
+git config --global pull.rebase true
+
+# 添加别名、命令缩写
+git config --global alias.<缩写> "<命令>"
+
+# 查看全部配置、列出设置
+git config --global --list
+
+# 一键配常用别名、co ci st br lg
+git config --global alias.co checkout && git config --global alias.ci commit && git config --global alias.st status && git config --global alias.br branch && git config --global alias.lg 'log --oneline --graph --decorate'
