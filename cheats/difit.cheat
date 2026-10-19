@@ -1,0 +1,37 @@
+% difit, git, diff
+
+# 查看差异、看 diff、代码审查、浏览器看改动
+difit
+
+# 看未提交改动、工作区、working、未跟踪文件
+difit working --include-untracked
+
+# 看暂存区、staged、已 add 的改动
+difit staged
+
+# 看某个提交差异、指定 commit、回看历史改动
+difit <提交>
+
+# 对比两个提交、两个分支差异、compare、区间对比
+difit <提交或分支> <对比对象>
+
+# 以合并基为基准对比、merge-base、分支分叉点
+difit <提交或分支> <对比对象> --merge-base
+
+# 审查 GitHub PR、pull request、网页评论
+difit --pr <PR地址>
+
+# 调整上下文行数、diff 上下文、context、多看几行
+difit --context <行数>
+
+# 只起服务不开浏览器、无头、no-open、复制链接给别人
+difit --no-open --keep-alive
+
+# 取回网页上的评审评论、导出评论、comment get
+difit comment get
+
+# 解决/移除评论线程、resolve、清理评论
+difit comment resolve <线程ID>
+
+# 清空评论重来、清空评审、干净开始
+difit --clean
