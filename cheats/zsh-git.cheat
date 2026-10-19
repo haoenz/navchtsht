@@ -1,0 +1,612 @@
+% git, alias, zsh, 基础
+
+# git 本身、入口、g
+g
+
+# 查看状态、gst、status
+gst
+
+# 简短状态、gst、gss、status short
+gss
+
+# 简短状态含分支跟踪、gsb、status branch
+gsb
+
+# 帮助、ghh、help
+ghh
+
+# 查看全部配置、gcf、config list
+gcf
+
+# 跳转到仓库根目录、grt、root toplevel
+grt
+
+# 拉取变基当前分支（调用 ggu 函数）、ggpur、pull rebase
+ggpur
+
+% git, alias, zsh, 暂存
+
+# 暂存文件、ga、add
+ga
+
+# 暂存全部改动、gaa、add all
+gaa
+
+# 交互式逐块暂存、gapa、add patch
+gapa
+
+# 暂存已跟踪文件的改动、gau、add update
+gau
+
+# 暂存并显示详细信息、gav、add verbose
+gav
+
+# 快速 WIP 提交、gwip、wip 尚未完成
+gwip
+
+# 撤销最近一次 WIP 提交、gunwip、撤销 wip
+gunwip
+
+% git, alias, zsh, 提交
+
+# 提交（显示 diff）、gc、commit
+gc
+
+# 提交全部已跟踪文件改动、gca、commit all
+gca
+
+# 提交但不打开编辑器、gcn、commit no-edit
+gcn
+
+# 提交并写说明、gcmsg、commit message
+gcmsg
+
+# 提交全部改动并写说明、gcam、commit all message
+gcam
+
+# 提交全部改动并签名 off、gcas、signoff
+gcas
+
+# 提交全部改动、签名并写说明、gcasm、signoff message
+gcasm
+
+# 提交并写说明、同时签名 off、gcsm、signoff message
+gcsm
+
+# GPG 签名提交、gcs、gpg sign
+gcs
+
+# GPG 签名提交并签名 off、gcss、gpg signoff
+gcss
+
+# GPG 签名提交、签名 off 并写说明、gcssm、gpg signoff message
+gcssm
+
+# 修补提交：把当前改动标记为某提交的 fixup、gcfu、fixup
+gcfu
+
+% git, alias, zsh, 补丁
+
+# 应用邮件格式补丁、gam、am
+gam
+
+# 中止补丁应用、gama、am abort
+gama
+
+# 继续补丁应用、gamc、am continue
+gamc
+
+# 查看当前冲突的补丁、gamscp、am show current patch
+gamscp
+
+# 跳过当前补丁、gams、am skip
+gams
+
+# 应用普通补丁、gap、apply
+gap
+
+# 三方合并方式应用补丁、gapt、apply 3way
+gapt
+
+% git, alias, zsh, 二分查找
+
+# 启动二分查找定位 bug、gbs、bisect
+gbs
+
+# 标记当前提交为坏、gbsb、bisect bad
+gbsb
+
+# 标记当前提交为好、gbsg、bisect good
+gbsg
+
+# 标记当前提交为新、gbsn、bisect new
+gbsn
+
+# 标记当前提交为旧、gbso、bisect old
+gbso
+
+# 结束二分查找并回到原分支、gbsr、bisect reset
+gbsr
+
+# 开始二分查找、gbss、bisect start
+gbss
+
+# 行级追溯：查看每行最后修改者、gbl、blame
+gbl
+
+% git, alias, zsh, 分支
+
+# 列出分支、gb、branch
+gb
+
+# 列出含远程的全部分支、gba、branch all
+gba
+
+# 删除已合并分支、gbd、branch delete
+gbd
+
+# 强制删除分支、gbD、branch delete force
+gbD
+
+# 分支重命名、gbm、branch move
+gbm
+
+# 列出未合并到当前分支的分支、gbnm、no merged
+gbnm
+
+# 列出远程分支、gbr、branch remotes
+gbr
+
+# 设置当前分支的上游、ggsup、set upstream
+ggsup
+
+# 列出远程已删除的本地分支、gbg、gone
+gbg
+
+# 列出远程已删除的本地分支（含跟踪信息）、gbgd、gone delete
+gbgd
+
+# 强删远程已删除的本地分支、gbgD、gone delete force
+gbgD
+
+% git, alias, zsh, 切换分支
+
+# 切换分支或检出、gco、checkout
+gco
+
+# 检出并递归初始化子模块、gcor、checkout recurse submodules
+gcor
+
+# 新建并切换分支、gcb、checkout -b
+gcb
+
+# 新建或强制重置分支、gcB、checkout -B
+gcB
+
+# 切到开发主分支（develop）、gcd、checkout develop
+gcd
+
+# 切到主分支（main/master）、gcm、checkout main
+gcm
+
+# 切换分支、gsw、switch
+gsw
+
+# 新建并切换分支、gswc、switch create
+gswc
+
+# 切到开发主分支（develop）、gswd、switch develop
+gswd
+
+# 切到主分支（main/master）、gswm、switch main
+gswm
+
+% git, alias, zsh, 拣选
+
+# 拣选提交到当前分支、gcp、cherry-pick
+gcp
+
+# 中止拣选、gcpa、cherry-pick abort
+gcpa
+
+# 继续拣选、gcpc、cherry-pick continue
+gcpc
+
+% git, alias, zsh, 克隆与清理
+
+# 交互式清理未跟踪文件（含目录）、gclean、clean
+gclean
+
+# 克隆并初始化子模块、gcl、clone
+gcl
+
+# 浅克隆子模块并省略大文件、gclf、clone filter blobless
+gclf
+
+# 显示最新 tag 对应的版本描述、gdct、describe tags
+gdct
+
+% git, alias, zsh, 差异
+
+# 查看未暂存差异、gd、diff
+gd
+
+# 查看已暂存差异、gdca、diff cached
+gdca
+
+# 已暂存差异按词对比、gdcw、diff cached word
+gdcw
+
+# 查看已暂存差异、gds、diff staged
+gds
+
+# 差异按词对比、gdw、diff word
+gdw
+
+# 与上游分支比较差异、gdup、diff upstream
+gdup
+
+# 列出提交改动的文件名、gdt、diff tree
+gdt
+
+% git, alias, zsh, 远程获取
+
+# 获取远程更新、gf、fetch
+gf
+
+# 获取 origin 更新、gfo、fetch origin
+gfo
+
+% git, alias, zsh, 历史
+
+# 图形化日志、glgg、log graph
+glgg
+
+# 图形化日志含全部分支和装饰、glgga、log graph decorate all
+glgga
+
+# 最近 10 条图形化日志、glgm、log graph max count
+glgm
+
+# 彩色图形化日志（相对时间）、glol、log pretty
+glol
+
+# 彩色图形化日志（绝对日期）、glod、log date short
+glod
+
+# 彩色图形化日志（short 日期格式）、glods、log graph date short
+glods
+
+# 彩色图形化日志（相对时间、全部分支）、glola、log all
+glola
+
+# 彩色图形化日志含改动统计、glols、log stat
+glols
+
+# 一行式日志、glo、log oneline
+glo
+
+# 一行式图形化日志、glog、log oneline graph
+glog
+
+# 一行式图形化日志含全部分支、gloga、log oneline graph all
+gloga
+
+# 带改动统计的日志、glg、log stat
+glg
+
+# 带统计和补丁内容的日志、glgp、log stat patch
+glgp
+
+# 使用预设 pretty 格式的日志、glp、log prettily
+glp
+
+# 查看某次提交的完整内容、gsh、show
+gsh
+
+# 查看提交内容并验证签名、gsps、show signature
+gsps
+
+# 查看每次提交的具体改动、gwch、whatchanged
+gwch
+
+# 提交数量统计（按人数排序）、gcount、shortlog
+gcount
+
+% git, alias, zsh, 合并
+
+# 合并分支、gm、merge
+gm
+
+# 中止合并、gma、merge abort
+gma
+
+# 结束合并（冲突解决后）、gmc、merge continue
+gmc
+
+# 压缩合并不合入提交、gms、merge squash
+gms
+
+# 仅允许快进合并、gmff、merge ff only
+gmff
+
+# 合并 origin 的主分支、gmom、merge origin main
+gmom
+
+# 合并 upstream 的主分支、gmum、merge upstream main
+gmum
+
+# 启动图形合并工具、gmtl、mergetool
+gmtl
+
+# 用 vimdiff 作合并工具、gmtlvim、mergetool vimdiff
+gmtlvim
+
+% git, alias, zsh, 拉取
+
+# 拉取更新、gl、pull
+gl
+
+# 拉取并用变基整合、gpr、pull rebase
+gpr
+
+# 拉取变基并显示详情、gprv、pull rebase verbose
+gprv
+
+# 拉取变基（自动贮藏本地改动）、gpra、pull rebase autostash
+gpra
+
+# 拉取变基、自动贮藏并显示详情、gprav、pull rebase autostash verbose
+gprav
+
+# 变基方式拉取 origin 主分支、gprom、pull rebase origin main
+gprom
+
+# 交互式变基拉取 origin 主分支、gpromi、pull rebase interactive
+gpromi
+
+# 变基方式拉取 upstream 主分支、gprum、pull rebase upstream main
+gprum
+
+# 交互式变基拉取 upstream 主分支、gprumi、pull rebase interactive upstream
+gprumi
+
+# 拉取 origin 的当前分支、ggpull、pull origin current
+ggpull
+
+# 拉取 upstream 的当前分支、gluc、pull upstream current
+gluc
+
+# 拉取 upstream 的主分支、glum、pull upstream main
+glum
+
+% git, alias, zsh, 推送
+
+# 推送、gp、push
+gp
+
+# 演练推送（不实际推送）、gpd、push dry run
+gpd
+
+# 推送并设置上游、gpsup、push set upstream
+gpsup
+
+# 推送并显示详情、gpv、push verbose
+gpv
+
+# 推送全部分支和标签到 origin、gpoat、push all tags
+gpoat
+
+# 删除 origin 上的远程分支、gpod、push origin delete
+gpod
+
+# 推送当前分支到 origin、ggpush、push origin current
+ggpush
+
+# 推送到 upstream、gpu、push upstream
+gpu
+
+% git, alias, zsh, 变基
+
+# 变基、grb、rebase
+grb
+
+# 中止变基、grba、rebase abort
+grba
+
+# 继续变基、grbc、rebase continue
+grbc
+
+# 交互式变基、grbi、rebase interactive
+grbi
+
+# 变基到指定基底提交、grbo、rebase onto
+grbo
+
+# 跳过当前提交、grbs、rebase skip
+grbs
+
+# 变基到开发主分支（develop）、grbd、rebase develop
+grbd
+
+# 变基到主分支（main/master）、grbm、rebase main
+grbm
+
+# 变基到 origin 的主分支、grbom、rebase origin main
+grbom
+
+# 变基到 upstream 的主分支、grbum、rebase upstream main
+grbum
+
+# 查看引用日志（找回丢失提交）、grf、reflog
+grf
+
+% git, alias, zsh, 远程仓库
+
+# 列出远程仓库、gr、remote
+gr
+
+# 列出远程仓库及 URL、grv、remote verbose
+grv
+
+# 添加远程仓库、gra、remote add
+gra
+
+# 删除远程仓库、grrm、remote remove
+grrm
+
+# 远程仓库重命名、grmv、remote rename
+grmv
+
+# 修改远程仓库 URL、grset、remote set url
+grset
+
+# 更新所有远程仓库、grup、remote update
+grup
+
+% git, alias, zsh, 重置与撤销
+
+# 重置（混合模式，保留工作区）、grh、reset
+grh
+
+# 重置指定路径、gru、reset path
+gru
+
+# 硬重置：丢弃全部本地改动、grhh、reset hard
+grhh
+
+# 重置但保留未提交改动、grhk、reset keep
+grhk
+
+# 软重置：只移动 HEAD 保留暂存、grhs、reset soft
+grhs
+
+# 硬重置并清除全部未跟踪文件（含忽略的）、gpristine、重置 清理
+gpristine
+
+# 硬重置并清除未跟踪文件、gwipe、重置 清理
+gwipe
+
+# 硬重置到 origin 的当前分支状态、groh、reset origin hard
+groh
+
+# 撤销某次提交（生成反向提交）、grev、revert
+grev
+
+# 中止撤销、greva、revert abort
+greva
+
+# 继续撤销、grevc、revert continue
+grevc
+
+# 删除文件（含暂存）、grm、rm
+grm
+
+# 仅从暂存区移除、保留工作区文件、grmc、rm cached
+grmc
+
+# 恢复工作区文件改动、grs、restore
+grs
+
+# 从指定提交恢复文件、grss、restore source
+grss
+
+# 取消暂存、grst、restore staged
+grst
+
+% git, alias, zsh, 贮藏
+
+# 贮藏全部改动（含未跟踪和忽略的）、gstall、stash all
+gstall
+
+# 恢复贮藏但不删除记录、gstaa、stash apply
+gstaa
+
+# 清空全部贮藏、gstc、stash clear
+gstc
+
+# 删除指定贮藏、gstd、stash drop
+gstd
+
+# 列出贮藏记录、gstl、stash list
+gstl
+
+# 恢复贮藏并删除该记录、gstp、stash pop
+gstp
+
+# 查看贮藏内容的差异、gsts、stash show patch
+gsts
+
+# 贮藏全部改动（含未跟踪）、gstu、stash untracked
+gstu
+
+% git, alias, zsh, 子模块与SVN
+
+# 初始化子模块、gsi、submodule init
+gsi
+
+# 更新子模块、gsu、submodule update
+gsu
+
+# 提交到 SVN、gsd、svn dcommit
+gsd
+
+# 从 SVN 变基更新、gsr、svn rebase
+gsr
+
+% git, alias, zsh, 标签
+
+# 创建附注标签、gta、tag annotate
+gta
+
+# 创建 GPG 签名标签、gts、tag sign
+gts
+
+# 按版本号排序列出标签、gtv、tag sort
+gtv
+
+# 按前缀匹配列出标签、gtl、tag list
+gtl
+
+% git, alias, zsh, 工作树
+
+# 管理工作树、gwt、worktree
+gwt
+
+# 新建工作树、gwta、worktree add
+gwta
+
+# 列出工作树、gwtls、worktree list
+gwtls
+
+# 移动工作树、gwtmv、worktree move
+gwtmv
+
+# 删除工作树、gwtrm、worktree remove
+gwtrm
+
+% git, alias, zsh, 图形界面与冷门
+
+# 打开 gitk 图形界面（全部分支）、gk、gitk
+gk
+
+# 打开 gitk 并定位到 reflog 指定提交、gke、gitk reflog
+gke
+
+# 打开 git 图形提交工具、gg、gui citool
+gg
+
+# 图形工具修改上次提交、gga、gui amend
+gga
+
+# 列出被假定未变更的文件、gignored、ignore ls-files
+gignored
+
+# 忽略文件的本地改动（假定未变更）、gignore、assume unchanged
+gignore
+
+# 恢复跟踪被假定未变更的文件、gunignore、no assume unchanged
+gunignore
+
+# 从文件列表中过滤（配合 fzf 使用）、gfg、ls files grep
+gfg
