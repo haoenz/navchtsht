@@ -1,0 +1,51 @@
+% tokei, 代码统计, LOC, 行数
+
+# 统计当前目录代码行数｜LOC、语言分类、总览
+tokei
+
+# 统计指定路径｜项目统计、指定目录
+tokei <路径>
+
+$ 路径: echo .
+
+# 逐文件统计｜每文件行数、明细
+tokei --files
+
+# 列出支持的语言｜语言列表、有哪些语言
+tokei --languages
+
+% tokei, 排序, 过滤
+
+# 按代码行数排序｜找最大语言、排序
+tokei --sort code
+
+# 只统计指定语言｜过滤、聚焦
+tokei --type <语言>
+
+$ 语言: printf '%s\n' Rust Python Go JavaScript TypeScript
+
+# 排除文件或目录｜忽略、排除构建产物
+tokei --exclude <模式>
+
+$ 模式: echo '*.min.js'
+
+# 包含隐藏目录｜hidden、点文件
+tokei --hidden
+
+% tokei, 输出, 自动化
+
+# 输出 JSON｜脚本处理、机器可读
+tokei --output json
+
+# 其他格式输出｜CSV、YAML、导出
+tokei --output <格式>
+
+$ 格式: printf '%s\n' csv yaml cbm
+
+# 取某语言的代码行数｜jq 配合、单值提取
+tokei --output json | jq '.<语言>.code'
+
+$ 语言: printf '%s\n' Rust Python Go JavaScript
+
+# 统计时忽略 .gitignore 规则｜全部文件、不遵守忽略
+tokei --no-ignore-vcs
