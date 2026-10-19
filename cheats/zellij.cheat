@@ -1,0 +1,257 @@
+% zellij, 基础
+
+# 启动新会话｜进入 zellij、多路复用
+zellij
+
+# 启动命名会话｜新建、起名字
+zellij -s <名称>
+
+# 带指定布局启动｜预置布局
+zellij --layout <布局>
+
+# 总是新建会话并加载布局｜不附加、强制新建
+zellij -n <布局>
+
+# 附加到已有会话｜接管、恢复
+zellij attach
+zellij attach <名称>
+
+# 列出活跃会话｜有哪些会话
+zellij list-sessions
+
+# 杀掉指定会话｜强制结束
+zellij kill-session <名称>
+
+# 杀掉全部会话｜清场、全部结束
+zellij kill-all-sessions
+
+# 删除会话记录｜清理残留、已退出会话
+zellij delete-session <名称>
+
+# 删除全部会话记录｜清空残留
+zellij delete-all-sessions
+
+# 在会话内修改运行时配置｜临时设置、不写文件
+zellij options --default-shell <shell>
+
+# 限制最大面板数｜超限自动关旧
+zellij --max-panes <数量>
+
+% zellij, 面板, action
+
+# 新建面板｜分屏、并排
+zellij action new-pane
+
+# 向右分屏｜水平、左右
+zellij action new-pane --direction right
+
+# 向下分屏｜垂直、上下
+zellij action new-pane --direction down
+
+# 新建并命名面板｜命名、加标题
+zellij action new-pane --name <名称>
+
+# 关闭当前面板｜删掉
+zellij action close-pane
+
+# 最大化面板｜放大、占满
+zellij action toggle-fullscreen
+
+# 切换浮动面板｜悬浮、置顶
+zellij action toggle-floating-panes
+
+# 浮动与内嵌互换｜嵌入、取消浮动
+zellij action toggle-pane-embed-or-floating
+
+# 同步输入到全部面板｜广播、批量操作
+zellij action toggle-active-sync-tab
+
+# 移动焦点｜切换面板、上下左右
+zellij action move-focus <方向>
+
+$ 方向: printf '%s\n' right left up down
+
+# 聚焦下一个面板｜轮转、切换
+zellij action focus-next-pane
+
+# 移动面板位置｜挪动、轮转
+zellij action move-pane <方向>
+
+# 调整面板大小｜拉伸、缩放
+zellij action resize <increase|decrease> [方向]
+
+# 重命名面板｜改名
+zellij action rename-pane <名称>
+
+# 撤销面板重命名｜恢复原名
+zellij action undo-rename-pane
+
+% zellij, 标签页, action
+
+# 新建标签页｜添加 tab
+zellij action new-tab
+
+# 关闭当前标签页｜删掉
+zellij action close-tab
+
+# 跳到指定标签页｜切换、按编号
+zellij action go-to-tab <编号>
+
+# 按名字跳转标签页｜切换
+zellij action go-to-tab-name <名称>
+
+# 下一个标签页｜切换
+zellij action go-to-next-tab
+
+# 上一个标签页｜切换
+zellij action go-to-previous-tab
+
+# 重命名标签页｜改名
+zellij action rename-tab <名称>
+
+# 撤销标签页重命名｜恢复原名
+zellij action undo-rename-tab
+
+# 移动标签页顺序｜排序、换位
+zellij action move-tab <right|left>
+
+# 查询所有标签页名｜列名字、脚本用
+zellij action query-tab-names
+
+% zellij, 滚动, action
+
+# 向上滚动｜翻页、查看历史
+zellij action scroll-up
+
+# 向下滚动｜翻页
+zellij action scroll-down
+
+# 滚到最顶｜开头、最早输出
+zellij action scroll-to-top
+
+# 滚到最底｜结尾、最新输出
+zellij action scroll-to-bottom
+
+# 上翻半页｜小步滚动
+zellij action half-page-scroll-up
+
+# 下翻半页｜小步滚动
+zellij action half-page-scroll-down
+
+# 清空面板缓冲｜清屏、擦除输出
+zellij action clear
+
+# 导出面板内容到文件｜存日志、导出
+zellij action dump-screen <文件>
+
+# 编辑面板回滚缓冲｜翻历史、用编辑器看
+zellij action edit-scrollback
+
+% zellij, 会话管理, action
+
+# 向指定会话发操作｜远程控制、不进入
+zellij --session <名称> action <操作>
+
+# 重命名会话｜改名
+zellij action rename-session <名称>
+
+# 导出当前布局｜保存布局、复用
+zellij action dump-layout > <文件>
+
+# 切换输入模式｜锁定、tab、resize 等模式
+zellij action switch-mode <模式>
+
+$ 模式: printf '%s\n' locked pane tab resize move search session
+
+# 切换交换布局｜面板排布方案、备选布局
+zellij action next-swap-layout
+
+# 列出连接的客户端｜谁在线、多终端
+zellij action list-clients
+
+% zellij, 运行, 启动
+
+# 在新面板运行命令｜执行、启动
+zellij run -- <命令>
+
+# 运行结束后关闭面板｜一次性命令
+zellij run --close-on-exit -- <命令>
+
+# 浮动面板运行命令｜悬浮执行
+zellij run --floating -- <命令>
+
+# 在新面板打开文件｜编辑、默认编辑器
+zellij edit <文件>
+
+# 指定行号打开文件｜定位、跳转
+zellij edit --line-number <行号> <文件>
+
+# 会话内加载布局为新标签｜追加布局
+zellij --layout <布局>
+
+% zellij, 布局, 配置
+
+# 检查配置并显示目录｜诊断、配置在哪
+zellij setup --check
+
+# 忽略现有配置用默认值启动｜排错、干净环境
+zellij setup --clean
+
+# 导出默认配置｜模板、参考
+zellij setup --dump-config > <文件>
+
+# 导出内置布局｜模板、自定义起点
+zellij setup --dump-layout <布局>
+
+# 导出交换布局｜模板
+zellij setup --dump-swap-layout <布局>
+
+# 导出内置插件到目录｜离线插件
+zellij setup --dump-plugins <目录>
+
+# 生成 shell 补全｜zsh、bash 补全
+zellij setup --generate-completion <shell>
+
+# 生成自动启动脚本｜自动进入、auto-start
+zellij setup --generate-auto-start <shell>
+
+# 迁移旧版配置格式｜升级、转换 kdl
+zellij convert-config <旧文件>
+
+# 迁移旧版布局｜升级、转换
+zellij convert-layout <旧文件>
+
+# 迁移旧版主题｜升级、转换
+zellij convert-theme <旧文件>
+
+# 指定配置文件路径｜自定义配置
+zellij --config <文件>
+
+# 指定配置目录｜配置目录
+zellij --config-dir <目录>
+
+# 指定插件数据目录｜数据目录
+zellij --data-dir <目录>
+
+% zellij, 插件, 高级
+
+# 加载插件｜运行、自定义 UI
+zellij plugin -- <url>
+
+# 列出插件别名｜aliases、有哪些
+zellij list-aliases
+
+# 向插件发数据｜进程间通信、高级
+zellij pipe --name <管道名> -- <数据>
+
+# 向指定插件发数据｜带 url、高级
+zellij pipe --plugin <url> --name <管道名> -- <数据>
+
+# 启动或聚焦插件｜复用、不重复开
+zellij action launch-or-focus-plugin -- <url>
+
+# 重载插件｜刷新、开发调试
+zellij action start-or-reload-plugin -- <url>
+
+# 调试模式启动｜排错、日志
+zellij --debug
