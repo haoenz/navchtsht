@@ -120,6 +120,9 @@ git pull --rebase
 # 首次推送、设置上游、push -u
 git push -u <远程> <分支>
 
+# 取消关联、解除上游、取消本地分支与远程分支的关联、branch --unset-upstream
+git branch --unset-upstream <分支>
+
 # 安全强推、force-with-lease、检查后覆盖
 git push --force-with-lease
 
