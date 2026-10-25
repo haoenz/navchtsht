@@ -1,0 +1,461 @@
+% atuin, 历史, 基础, 安装
+
+# 初始化 atuin、向导、首次配置、开启功能
+atuin setup
+
+# 生成 zsh 初始化脚本、shell hook、写入 .zshrc
+atuin init zsh
+
+# 生成 bash 初始化脚本、shell hook
+atuin init bash
+
+# 其他 shell 初始化、fish、nushell
+atuin init fish
+
+# 不接管 Ctrl-R、保留原搜索、只记录历史
+atuin init zsh --disable-ctrl-r
+
+# 不接管上方向键、保留原生历史翻页
+atuin init zsh --disable-up-arrow
+
+# 导入当前 shell 历史、迁移旧记录、首次同步
+atuin import auto
+
+# 从 zsh 历史文件导入、老用户迁移
+atuin import zsh
+
+# 从 bash 历史文件导入、迁移
+atuin import bash
+
+# 导入 fish 历史、迁移
+atuin import fish
+
+# 导入 nushell 历史、迁移
+atuin import nu
+
+# 导入 PowerShell 历史、Windows
+atuin import powershell
+
+# 导入 zsh-histdb 数据库、第三方插件
+atuin import zsh-hist-db
+
+# 查看安装位置、配置文件、数据库、环境变量
+atuin info
+
+% atuin, 搜索, 交互
+
+# 搜索历史、找命令、模糊查找、Ctrl-R
+atuin search
+
+# 打开交互式搜索界面、TUI、上下选择
+atuin search -i
+
+# 带关键词搜索、直接过滤、预填查询
+atuin search <关键词>
+
+# 只看当前目录的历史、按路径过滤
+atuin search --cwd .
+
+# 指定目录的历史、跨项目查
+atuin search -c <目录>
+
+# 排除某目录、跳过噪音、过滤路径
+atuin search --exclude-cwd <目录>
+
+# 只看成功的命令、按退出码过滤
+atuin search -e 0
+
+# 排除失败命令、忽略报错记录
+atuin search --exclude-exit 1
+
+# 按时间范围查、最近几天、某天之后
+atuin search --after <日期>
+
+# 查某时间之前的命令、历史回顾
+atuin search --before <日期>
+
+# 只在当前主机历史里搜、本机范围
+atuin search --filter-mode host
+
+# 只在当前会话搜、这次终端里跑过的
+atuin search --filter-mode session
+
+# 只搜当前目录、项目内命令
+atuin search --filter-mode directory
+
+# 只搜当前 workspace、仓库范围
+atuin search --filter-mode workspace
+
+# 前缀匹配模式、快速定位、开头一致
+atuin search --search-mode prefix
+
+# 全文匹配模式、按单词命中
+atuin search --search-mode fulltext
+
+# 模糊匹配模式、容错、跳字符
+atuin search --search-mode fuzzy
+
+# vim 键位、hjkl 移动、模式切换
+atuin search --keymap-mode vim-normal
+
+# 调整界面高度、内联显示行数
+atuin search --inline-height 15
+
+% atuin, 搜索, 非交互, 脚本
+
+# 非交互输出结果、打印到终端、管道
+atuin search <关键词> --limit 10
+
+# 只要命令本身、去掉时间和目录
+atuin search <关键词> --cmd-only
+
+# 自定义输出格式、时间目录拼接
+atuin search <关键词> --format '{time} {directory} $ {command}'
+
+# 结果分页、跳过前 N 条
+atuin search <关键词> --offset 20
+
+# 时间显示为人类可读、相对时间
+atuin search <关键词> --human
+
+# 反转顺序、最旧的在前
+atuin search <关键词> --reverse
+
+# 包含重复命令、不去重
+atuin search <关键词> --include-duplicates
+
+# 按作者过滤、区分人和 agent
+atuin search <关键词> --author '$all-user'
+
+# 只搜某个 shell 的记录、zsh/bash 分开
+atuin search <关键词> --shell zsh
+
+# 以 NUL 分隔输出、多行命令安全处理
+atuin search <关键词> --print0
+
+# 列出全部历史、时间倒序、导出
+atuin history list
+
+# 列出历史并显示目录和会话
+atuin history list --cwd --session --human
+
+# 自定义列出格式、导出成表格
+atuin history list --format '{time} | {directory} | {command}'
+
+# 取上一条命令、脚本里复用
+atuin history last --cmd-only
+
+# 实时流出历史事件、观察记录、调试
+atuin history tail
+
+% atuin, 清理, 删除, 危险
+
+# 按查询删除历史、清理敏感命令、谨慎
+atuin search <关键词> --delete
+
+# 先预览待删记录、dry-run、确认
+atuin search <关键词> --cmd-only
+
+# 清空全部历史、不可恢复、极度危险
+atuin search --delete-it-all
+
+# 按排除规则清理、prune、自动过滤
+atuin history prune --dry-run
+
+# 真正执行规则清理、删除匹配项
+atuin history prune
+
+# 删除重复历史、清理重复、去重、同命令同目录
+atuin history dedup --before <日期> --dupkeep <保留条数>
+
+# 去重前预览、dry-run、看会删什么
+atuin history dedup --before <日期> --dupkeep <条数> --dry-run
+
+% atuin, 统计
+
+# 历史统计、最常用命令、总条数
+atuin stats
+
+# 今天的统计、当日回顾
+atuin stats today
+
+# 最近 7 天统计、本周
+atuin stats week
+
+# 最近 31 天统计、本月
+atuin stats month
+
+# 最近 365 天统计、本年
+atuin stats year
+
+# 指定某天统计、24 小时窗口
+atuin stats <日期>
+
+# 相对日期统计、上周五、上周四下午
+atuin stats 'last friday'
+
+# 列出更多常用命令、Top N
+atuin stats --count 20
+
+# 双词组合统计、ngram、看命令搭配
+atuin stats -n 2
+
+# 按目录统计、项目范围
+atuin stats --filter-mode directory
+
+% atuin, 同步, 账号, 服务器
+
+# 注册账号、自建服务器、首次使用
+atuin register -u <用户名> -e <邮箱>
+
+# 登录已有账号、多机同步
+atuin login -u <用户名>
+
+# 从标准输入读密码、避免留在历史里
+atuin login -u <用户名> -p -
+
+# 带两步验证登录、TOTP
+atuin login -u <用户名> -t <验证码>
+
+# 退出登录、清除本地凭据
+atuin logout
+
+# 立即同步、上传下载、多机合并
+atuin sync
+
+# 强制全量重新下载、修复不一致
+atuin sync --force
+
+# 查看加密密钥、迁移到新机器
+atuin key
+
+# 以 base64 输出密钥、方便复制
+atuin key --base64
+
+# 查看同步状态、上次同步时间
+atuin status
+
+# 修改密码、账号安全
+atuin account change-password
+
+# 关联 Hub 账号、网页端
+atuin account link
+
+# 删除账号及全部同步数据、不可恢复
+atuin account delete
+
+% atuin, 配置
+
+# 查看当前全部配置、TOML 输出
+atuin config print
+
+# 读取某个配置项、当前值
+atuin config get search_mode
+
+# 读取生效值、含默认值和覆盖
+atuin config get search_mode --resolved
+
+# 同时显示文件值和生效值、对比
+atuin config get search_mode --verbose
+
+# 修改配置项、写入 config.toml
+atuin config set search_mode fuzzy
+
+# 按类型写入、字符串、布尔、整数
+atuin config set auto_sync true --type boolean
+
+# 启用功能、连带依赖一起开
+atuin config enable daemon
+
+# 启用输出捕获、记录命令输出
+atuin config enable output-capture
+
+# 启用 AI 线程捕获、记录 agent 会话
+atuin config enable threads
+
+# 关闭功能、保留依赖
+atuin config disable output-capture
+
+# 打印默认配置模板、参考所有选项
+atuin default-config
+
+# 开启自动同步、避免手动 sync
+atuin config set auto_sync true
+
+# 设置默认搜索模式、全局生效
+atuin config set search_mode prefix
+
+# 设置默认过滤范围、按目录
+atuin config set filter_mode directory
+
+# 设置界面风格、compact 紧凑
+atuin config set style compact
+
+# 设置内联高度、界面占几行
+atuin config set inline_height 10
+
+% atuin, 存储, 排错
+
+# 健康检查、诊断常见问题、报错排查
+atuin doctor
+
+# 查看记录库状态、store 概况
+atuin store status
+
+# 校验能否用当前密钥解密、密钥错乱排查
+atuin store verify
+
+# 重建索引、搜索异常时修复
+atuin store rebuild history
+
+# 重新压缩存储、回收磁盘空间
+atuin store compact
+
+# 清理无法解密的记录、换密钥后
+atuin store purge
+
+# 单向推送全部记录、手动补同步
+atuin store push
+
+# 单向拉取全部记录、从服务器恢复
+atuin store pull
+
+# 换新密钥重新加密、可能丢数据、危险
+atuin store rekey
+
+# 检查是否有新版本、不安装
+atuin update --check
+
+# 更新到最新版、升级
+atuin update
+
+# 安装指定版本、回滚
+atuin update --version <版本号>
+
+# 启动后台守护进程、加速搜索
+atuin daemon start
+
+# 查看守护进程状态、是否在跑
+atuin daemon status
+
+# 停止守护进程、排错时关闭
+atuin daemon stop
+
+# 重启守护进程、改配置后生效
+atuin daemon restart
+
+% atuin, 输出捕获, output
+
+# 全文搜索命令输出、找上次的报错
+atuin output search <关键词>
+
+# 显示匹配行上下文、前后各几行
+atuin output search <关键词> -C 3
+
+# 限制返回条数、只看前几条
+atuin output search <关键词> --limit 10
+
+# 输出 JSON、脚本处理、机器可读
+atuin output search <关键词> --style json
+
+# 初始化 pty-proxy、让子 shell 也捕获输出
+atuin pty-proxy init
+
+% atuin, 脚本, scripts
+
+# 新建脚本、保存常用命令、可复用
+atuin scripts new <名称>
+
+# 新建脚本并写描述和标签、方便检索
+atuin scripts new <名称> -d '<描述>' -t '<标签>'
+
+# 把上一条命令存成脚本、快速沉淀
+atuin scripts new <名称> --last
+
+# 把最近 N 条命令存成脚本、批量沉淀
+atuin scripts new <名称> --last 3
+
+# 运行脚本、执行保存的命令
+atuin scripts run <名称>
+
+# 运行脚本并传变量、模板参数
+atuin scripts run <名称> -v <键>=<值>
+
+# 列出所有脚本、查看已保存
+atuin scripts list
+
+# 查看脚本内容、含 shebang
+atuin scripts get <名称> -s
+
+# 编辑脚本、修改内容
+atuin scripts edit <名称>
+
+# 删除脚本、不再需要
+atuin scripts delete <名称>
+
+% atuin, AI, 线程, agent
+
+# AI 内联补全、根据当前命令行建议
+atuin ai inline
+
+# 让 AI 补全指定命令、直接给上下文
+atuin ai inline '<命令前缀>'
+
+# 列出捕获的 agent 线程、最新在前
+atuin threads list
+
+# 查看某个线程详情、消息和工具调用
+atuin threads show latest
+
+# 全文搜索 agent 线程、找之前的对话
+atuin threads search <关键词>
+
+# 只搜某个 agent、claude-code 或 codex
+atuin threads search <关键词> --harness claude-code
+
+# 交互挑选线程并恢复、继续上次工作
+atuin resume
+
+# 按关键词恢复线程、跳过选择器
+atuin resume <关键词>
+
+# 只打印恢复命令、不执行、审查
+atuin resume <关键词> --print
+
+# 把线程转到另一个 agent 继续、跨工具
+atuin resume <关键词> --in codex
+
+# 分叉线程、保留原线程、开新分支
+atuin resume <关键词> --fork
+
+# 恢复本机副本、不与同步合并
+atuin resume <关键词> --as-is
+
+# 实时跟踪线程录制、调试捕获
+atuin threads tail
+
+# 导入本机已有 agent 线程、补录历史
+atuin threads import
+
+# 安装 MCP 服务、让 AI 工具搜历史
+atuin mcp install claude-code
+
+# 安装 agent shell hook、把 agent 命令记入历史
+atuin hook install claude-code
+
+% atuin, 年度回顾, 其他
+
+# 年度回顾、一年命令总结、趣味统计
+atuin wrapped
+
+# 指定年份回顾、看往年
+atuin wrapped 2025
+
+# 生成 shell 补全、Tab 补全
+atuin gen-completions -s zsh -o <输出目录>
+
+# 查看旧版同步的 alias 数据、遗留迁移
+atuin dotfiles alias
+
+# 查看旧版同步的变量、遗留迁移
+atuin dotfiles var
