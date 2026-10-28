@@ -4,7 +4,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 我自己维护的中文 [navi](https://github.com/denisidoro/navi) cheatsheet 仓库。
-现有片段覆盖 14 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
+现有片段覆盖 15 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
 
 两种检索方式并存：
 
@@ -21,6 +21,7 @@
     ├── git.cheat      # git 本身：日常、分支、远程、撤销、冷门子命令
     ├── zsh-git.cheat  # oh-my-zsh git 插件 alias：按缩写反查
     ├── ouch.cheat     # 压缩解压：tar、zip、7z、rar、zst 等
+    ├── 7z.cheat       # 7-Zip：压缩、解压、加密、分卷、校验
     ├── keifu.cheat    # Git 提交图 TUI
     ├── difit.cheat    # 浏览器里的 Git diff 查看器
     ├── glow.cheat     # 终端渲染 markdown
@@ -40,6 +41,7 @@
 | zsh-git | oh-my-zsh git 插件 alias 速查 | gst、gco、alias 反查 |
 | tokei | 代码行数统计 | 代码统计、行数、语言构成 |
 | ouch | 压缩与解压 | 解压、打包、zip |
+| 7z | 7-Zip 压缩、解压与校验 | 加密、分卷、压缩率、完整性检查 |
 | keifu | 看 Git 提交图 | 提交图、分支图 |
 | difit | 浏览器里看 Git diff、审 PR | 查看差异、代码审查、PR 审查 |
 | glow | 终端渲染 markdown | 渲染 md、预览 |
