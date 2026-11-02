@@ -1,0 +1,193 @@
+% qalc, 基础, 计算
+
+# 直接计算表达式｜输出算式与结果
+qalc "2^10 + sqrt 16"
+
+# 只输出结果｜-t、脚本取值
+qalc -t "2^10 + sqrt 16"
+
+# 进入交互模式｜逐行计算、可存变量
+qalc -i
+
+# 取模与整除｜mod、// 运算
+qalc -t "17 mod 5"
+
+# 位运算｜xor、移位、按位与
+qalc -t "1 << 10"
+
+# 阶乘与幂｜!、^、自动大数
+qalc -t "2^100"
+
+# 常量计算｜pi、e、欧拉恒等式
+qalc -t "e^(i*pi)"
+
+# 百分比加价｜原价上浮、加税
+qalc -t "100 + 20%"
+
+# 百分比扣减｜打折、降价
+qalc -t "100 - 20%"
+
+% qalc, 单位, 换算
+
+# 单位换算｜to 转换复合单位
+qalc -t "20 miles / 2h to km/h"
+
+# 箭头写法｜-> 等价于 to
+qalc -t "100 km -> miles"
+
+# 混合单位输出｜大单位拆成小单位
+qalc -t "1.74 m to ft"
+
+# 强制单一单位｜- 前缀禁止混合
+qalc -t "1.74 m to -ft"
+
+# 自动匹配前缀｜? 让 qalc 选量级
+qalc -t "0.000005 m to ?m"
+
+# 二进制前缀｜b? 自动用 KiB、MiB
+qalc -t "500 megabit/s * 2 h to b?byte"
+
+# 温度换算｜摄氏华氏必须带 ° 号
+qalc -t "25 °C to °F"
+
+# 绝对温度｜开尔文与摄氏互转
+qalc -t "300 K to °C"
+
+# 数据量换算｜GiB 与 GB 的差别
+qalc -t "1 GiB to MB"
+
+# 时长换算｜时分秒写成混合单位
+qalc -t "1 h 30 min to min"
+
+# 物理量相加｜不同单位自动统一
+qalc -t "5 m + 3 ft to cm"
+
+# 能耗换算｜功率乘时间得电量
+qalc -t "100 W * 1 h to kWh"
+
+# 货币换算｜用内置汇率、离线值可能旧
+qalc -t "100 USD to CNY"
+
+# 联网更新汇率｜-e 先抓当日牌价
+qalc -e -t "100 USD to CNY"
+
+% qalc, 进制转换, 进制
+
+# 十六进制输出｜to hex、带 0x
+qalc -t "52 to hex"
+
+# 二进制输出｜to bin、四位分组
+qalc -t "1024 to bin"
+
+# 八进制输出｜to oct、前缀 0
+qalc -t "52 to oct"
+
+# 任意进制｜to base N、N 为 2 到 36
+qalc -t "100 to base 7"
+
+# 罗马数字｜to roman、年份转换
+qalc -t "2024 to roman"
+
+# 度分秒｜to sexa、角度拆分
+qalc -t "1.5 to sexa"
+
+# 时分秒格式｜to time、秒数转 H:MM:SS
+qalc -t "5000 s to time"
+
+# 进制字面量｜0x 十六、0b 二、0o 八
+qalc -t "0xFF + 0b1010"
+
+# 设置输出进制｜-b 指定结果进制
+qalc -b 16 "255"
+
+# 编程模式｜输入输出同进制、位运算友好
+qalc -p 16 "FF"
+
+# 科学计数法｜to sci、to eng 工程记数
+qalc -t "123456789 to sci"
+
+% qalc, 精度, 格式
+
+# 提高精度位数｜precision 默认 10 位
+qalc -s "precision 50" "pi"
+
+# 分数显示｜fractions on、小数转分数
+qalc -s "fractions on" "0.25"
+
+# 直接转分数｜to fraction、约到最简
+qalc -t "0.75 to fraction"
+
+# 质因数分解｜to factors、分解整数
+qalc -t "120 to factors"
+
+# 角度制三角函数｜angle deg、按度计算
+qalc -s "angle deg" "asin(0.5)"
+
+# 关闭 Unicode 输出｜-u8 用 ASCII 符号
+qalc -u8 -t "1/3"
+
+# 恢复默认设置｜--defaults 忽略配置文件
+qalc --defaults -t "1/3"
+
+% qalc, 数学, 函数
+
+# 三角函数｜sin、cos、tan 带单位
+qalc -t "sin(30 deg)"
+
+# 对数运算｜log2、log10、ln
+qalc -t "log2 1024"
+
+# 取整与绝对值｜floor、ceil、round、abs
+qalc -t "floor(-1.5)"
+
+# 组合与排列｜binomial、perm
+qalc -t "binomial(5,2)"
+
+# 最大公约数｜gcd、lcm 最小公倍数
+qalc -t "lcm(12,18)"
+
+# 复数运算｜i 为虚数单位
+qalc -t "(1+2i)*(3-4i)"
+
+# 矩阵乘法｜[[行],[行]] 构造矩阵
+qalc -t "[[1,2],[3,4]] * [[1],[1]]"
+
+# 一元方程｜未知数自动求解
+qalc -t "2x + 3 = 7"
+
+# 多解方程｜solve 返回全部根
+qalc -t "solve(x^2 = 4)"
+
+# 求导｜diff(表达式, 变量)
+qalc -t "diff(x^2, x)"
+
+# 定积分｜integrate(式, 下限, 上限)
+qalc -t "integrate(x^2, 0, 1)"
+
+% qalc, 变量, 检索
+
+# 执行命令文件｜-f 先加载变量再算
+qalc -f "<命令文件>" "<表达式>"
+
+# 列出单位｜--list-units 按关键词搜
+qalc --list-units meter
+
+# 列出函数｜--list-functions 按关键词搜
+qalc --list-functions sin
+
+# 列出变量与自定义项｜-l
+qalc -l
+
+% qalc, 其他, 选项
+
+# 限制计算时间｜-m 毫秒、防卡死
+qalc -m 1000 -t "sum(x, 1, 100000)"
+
+# 不加载定义文件｜-n 纯净环境
+qalc -n -t "1+1"
+
+# 查看版本｜-v
+qalc -v
+
+# 查看全部选项｜-h 帮助
+qalc -h
