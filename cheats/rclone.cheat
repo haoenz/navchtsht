@@ -1,0 +1,382 @@
+% rclone, 基础
+
+# 查看版本｜version、升级前确认
+rclone version
+
+# 查看配置文件位置｜配置文件、config file、在哪
+rclone config file
+
+# 查看配置/缓存/临时目录｜目录、cache、temp、paths
+rclone config paths
+
+# 列出所有已配置远程｜远程列表、listremotes、有哪些
+rclone listremotes
+
+# 查看远程剩余空间/配额｜容量、quota、about
+rclone about <远程>:
+
+# 导出配置为 JSON｜备份配置、dump
+rclone config dump
+
+# 导出脱敏配置（可分享）｜隐藏密钥、redacted
+rclone config redacted
+
+# 生成密码密文｜obscure、加密密码
+rclone obscure <密码>
+
+# 查看远程支持的能力｜backend features、支持哪些操作
+rclone backend features <远程>:
+
+% rclone, 远程配置
+
+# 交互式配置新远程｜新增远程、config、向导
+rclone config
+
+# 创建 S3 远程（非交互）｜S3、对象存储、access key、MinIO
+rclone config create <名称> s3 provider <提供商> access_key_id <AK> secret_access_key <SK>
+
+# 创建 WebDAV 远程（非交互）｜WebDAV、坚果云、url
+rclone config create <名称> webdav url <地址> vendor other user <用户名> pass <密码>
+
+# 创建 SFTP 远程（非交互）｜SFTP、ssh、密钥登录
+rclone config create <名称> sftp host <主机> user <用户> port 22 key_file <私钥路径>
+
+# 创建 Google Drive 远程｜Google Drive、网盘、gd、OAuth
+rclone config create <名称> drive scope drive
+
+# 修改已有远程的密码或参数｜改密码、config password
+rclone config password <名称> pass <新密码>
+
+# 重新授权 OAuth 远程｜token 过期、reconnect、重新登录
+rclone config reconnect <名称>:
+
+# 删除远程配置｜删除远程、config delete
+rclone config delete <名称>
+
+# 给配置文件加密｜config 加密、encryption set
+rclone config encryption set
+
+# 检查配置文件是否已加密｜encryption check、加密状态
+rclone config encryption check
+
+# 在无浏览器机器上授权｜headless、authorize、OAuth
+rclone authorize <类型>
+
+% rclone, 复制
+
+# 复制目录（增量）｜copy、备份、上传
+rclone copy <源> <目标> -P
+
+# 复制单个文件并改名｜copyto、重命名
+rclone copyto <源文件> <目标文件> -P
+
+# 移动目录｜move、剪切、搬家、删源
+rclone move <源> <目标> -P --delete-empty-src-dirs
+
+# 移动单个文件并改名｜moveto、重命名
+rclone moveto <源文件> <目标文件>
+
+# 提高并发加速传输｜加速、transfers、checkers、慢
+rclone copy <源> <目标> --transfers 8 --checkers 16 -P
+
+# 只补缺失文件（跳过已存在）｜ignore-existing、跳过
+rclone copy <源> <目标> --ignore-existing -P
+
+# 强制全量重传｜ignore-times、不跳过、覆盖
+rclone copy <源> <目标> --ignore-times -P
+
+# 按校验和判断是否变更｜checksum、可靠、大小相同
+rclone copy <源> <目标> --checksum -P
+
+# 限制传输带宽｜限速、bwlimit、别占满
+rclone copy <源> <目标> --bwlimit 10M -P
+
+# 限制传输总量与时长｜max-transfer、max-duration、配额
+rclone copy <源> <目标> --max-transfer 100G --cutoff-mode SOFT -P
+
+# 复制时保留空目录｜create-empty-src-dirs、空文件夹
+rclone copy <源> <目标> --create-empty-src-dirs
+
+# 复制时保留元数据｜metadata、时间戳、权限
+rclone copy <源> <目标> --metadata
+
+# 服务端直接复制（不落地）｜server-side、同后端、省流量
+rclone copy <源> <目标> --server-side-across-configs
+
+# 按大小排序传输｜order-by、大文件优先、小文件先
+rclone copy <源> <目标> --order-by size,descending -P
+
+# 复制前先演练｜dry-run、干跑、先看看
+rclone copy <源> <目标> -n -v
+
+# 只复制清单里的文件｜files-from、文件列表
+rclone copy --files-from <列表文件> <源目录> <目标> -P
+
+# 从 URL 直接下载到远程｜copyurl、直链、离线下载
+rclone copyurl <URL> <目标文件> -P
+
+# 未知大小的流式上传阈值｜streaming-upload、管道、stdin
+rclone rcat <远程>:<文件> --streaming-upload-cutoff 64M
+
+% rclone, 同步
+
+# 单向镜像同步（会删目标多余文件）｜sync、镜像、保持一致
+rclone sync <源> <目标> -P
+
+# 同步前预览要删什么｜dry-run、先看、演练
+rclone sync <源> <目标> -n -v
+
+# 同步并把旧文件留备份｜backup-dir、后悔药、防误删
+rclone sync <源> <目标> --backup-dir <备份目录> -P
+
+# 限制单次删除数量｜max-delete、防误删、保险
+rclone sync <源> <目标> --max-delete 50 -P
+
+# 安全同步：只增不删｜max-delete 0、绝不删除
+rclone sync <源> <目标> --max-delete 0 -P
+
+# 跟踪重命名省流量｜track-renames、改名、移动
+rclone sync <源> <目标> --track-renames --track-renames-strategy modtime
+
+# 双向同步（首次必须初始化）｜bisync、resync、两边同步
+rclone bisync <路径1> <路径2> --resync -P
+
+# 双向同步（日常增量）｜bisync、双向、两边
+rclone bisync <路径1> <路径2> -P
+
+# 双向同步的冲突处理策略｜conflict-resolve、冲突、谁赢
+rclone bisync <路径1> <路径2> --conflict-resolve newer
+
+# 双向同步只演练｜bisync dry-run、先看看
+rclone bisync <路径1> <路径2> -n -v
+
+% rclone, 列表查询
+
+# 递归列出文件与大小｜ls、列表、有哪些文件
+rclone ls <远程>:<路径>
+
+# 只列目录｜lsd、目录列表、文件夹
+rclone lsd <远程>:<路径>
+
+# 详细列表（含时间）｜lsl、详情、修改时间
+rclone lsl <远程>:<路径>
+
+# 只输出文件路径（脚本友好）｜lsf、路径、管道
+rclone lsf <远程>:<路径> -R --files-only
+
+# 路径+大小+时间三列｜lsf、format、pst、CSV
+rclone lsf <远程>:<路径> -R --format pst --separator ,
+
+# 以 JSON 列出（含哈希）｜lsjson、程序处理、hash
+rclone lsjson <远程>:<路径> -R --hash --human-readable
+
+# 树形展示远程目录｜tree、目录结构、层级
+rclone tree <远程>:<路径> --level 2
+
+# 统计总大小与文件数｜size、占多少空间、统计
+rclone size <远程>:<路径> --json
+
+# 交互式浏览磁盘占用｜ncdu、找出大文件、清理
+rclone ncdu <远程>:<路径>
+
+# 查看远程文件内容｜cat、读取、预览
+rclone cat <远程>:<文件> | head -n 20
+
+# 从 stdin 写入远程文件｜rcat、管道、重定向
+<命令> | rclone rcat <远程>:<文件>
+
+# 生成文件分享直链｜link、公开链接、分享
+rclone link <远程>:<文件>
+
+% rclone, 过滤
+
+# 只传指定扩展名｜include、按类型、只要图片
+rclone copy <源> <目标> --include "*.{jpg,png}" -P
+
+# 排除文件或目录｜exclude、跳过、不要缓存
+rclone sync <源> <目标> --exclude "*.tmp" --exclude "/缓存/**" -P
+
+# 用规则文件统一过滤｜filter-from、规则文件、批量规则
+rclone sync <源> <目标> --filter-from <规则文件> -P
+
+# 单条 +/- 过滤规则｜filter、优先级、白名单
+rclone copy <源> <目标> --filter "+ *.md" --filter "- *" -P
+
+# 只要大于某尺寸的文件｜min-size、按大小过滤
+rclone copy <源> <目标> --min-size 10M -P
+
+# 只传最近修改的文件｜max-age、按时间、增量
+rclone copy <源> <目标> --max-age 7d -P
+
+# 跳过正在写入的文件｜exclude-if-present、.ignore、未完成
+rclone copy <源> <目标> --exclude-if-present .ignore
+
+# 调试过滤器命中了什么｜过滤调试、dry-run、-vv
+rclone ls <远程>:<路径> --filter-from <规则文件> -vv -n
+
+# 只按文件清单筛选并避免遍历｜files-from、no-traverse、海量小文件
+rclone copy --files-from <列表文件> <源目录> <目标> --no-traverse -P
+
+% rclone, 校验
+
+# 双向比对源与目标｜check、一致性、差异
+rclone check <源> <目标> -P
+
+# 只检查源侧是否缺失｜one-way、单向、目标多余不管
+rclone check <源> <目标> --one-way
+
+# 下载实际数据算哈希｜check --download、严格、彻底
+rclone check <源> <目标> --download -P
+
+# 按 SUM 文件校验｜checksum、md5sum 文件、发布校验
+rclone checksum MD5 <sum文件> <远程>:<路径> -P
+
+# 输出远程文件的哈希表｜hashsum、md5、sha1、sha256
+rclone hashsum SHA256 <远程>:<路径> -R
+
+# 校验加密远程｜cryptcheck、加密盘、不要用 check
+rclone cryptcheck <加密远程>: <明文远程>:
+
+# 只比大小快速校验｜size-only、快、不读数据
+rclone check <源> <目标> --size-only
+
+% rclone, 挂载
+
+# 挂载远程到本地目录｜mount、挂载网盘、FUSE
+rclone mount <远程>:<路径> <挂载点> --vfs-cache-mode full --daemon
+
+# 挂载并允许其他用户访问｜allow-other、root、多用户
+rclone mount <远程>:<路径> <挂载点> --allow-other --vfs-cache-mode writes --daemon
+
+# 限制 VFS 缓存占用｜vfs-cache-max-size、缓存、磁盘爆满
+rclone mount <远程>:<路径> <挂载点> --vfs-cache-mode full --vfs-cache-max-size 20G --vfs-cache-max-age 24h --daemon
+
+# 延长目录缓存减少请求｜dir-cache-time、性能、卡顿
+rclone mount <远程>:<路径> <挂载点> --dir-cache-time 1000h --poll-interval 15s --daemon
+
+# 挂载为只读｜read-only、防误写、只读
+rclone mount <远程>:<路径> <挂载点> --read-only --daemon
+
+# 卸载挂载点｜umount、取消挂载、busy
+fusermount -u <挂载点>
+
+# 用内核 NFS 方式挂载｜nfsmount、不用 FUSE、性能
+rclone nfsmount <远程>:<路径> <挂载点> --daemon
+
+% rclone, 服务
+
+# 起 HTTP 文件服务｜serve http、浏览器下载、只读
+rclone serve http <远程>:<路径> --addr :8080
+
+# 起 WebDAV 服务（带认证）｜webdav、给手机/其他设备用
+rclone serve webdav <远程>:<路径> --addr :8080 --user <用户> --pass <密码>
+
+# 起 SFTP 服务｜sftp、ssh 访问、远程挂载
+rclone serve sftp <远程>:<路径> --addr :2022 --user <用户> --pass <密码>
+
+# 起 FTP 服务｜ftp、老设备、扫描仪
+rclone serve ftp <远程>:<路径> --addr :2121 --user <用户> --pass <密码>
+
+# 起 DLNA 媒体服务｜dlna、电视、投屏、看片
+rclone serve dlna <远程>:<路径>
+
+# 给 restic 当备份后端｜restic、备份仓库、快照
+rclone serve restic <远程>:<路径> --addr :8080
+
+# 起兼容 S3 的网关｜serve s3、S3 协议、给应用用
+rclone serve s3 <远程>:<路径> --addr :8080 --auth-key <AK>,<SK>
+
+% rclone, 删除清理
+
+# 删除目录内文件但保留目录｜delete、清空、批量删
+rclone delete <远程>:<路径> -P
+
+# 按条件删除文件｜delete、过滤、只删大文件
+rclone delete <远程>:<路径> --min-size 1G -P
+
+# 删除单个文件｜deletefile、删一个
+rclone deletefile <远程>:<文件>
+
+# 连目录一起彻底删除｜purge、清空目录、危险
+rclone purge <远程>:<路径>
+
+# 危险操作逐条确认｜interactive、确认、防手滑
+rclone delete <远程>:<路径> -i
+
+# 新建目录｜mkdir、建文件夹
+rclone mkdir <远程>:<路径>
+
+# 删除空目录｜rmdir、删文件夹
+rclone rmdir <远程>:<路径>
+
+# 递归清理空目录｜rmdirs、空壳、leave-root
+rclone rmdirs <远程>:<路径> --leave-root
+
+# 清空回收站/临时文件｜cleanup、回收站、后端清理
+rclone cleanup <远程>:
+
+# 删除前先演练｜purge dry-run、先看看、防误删
+rclone purge <远程>:<路径> -n -v
+
+% rclone, 加密
+
+# 创建加密远程（密码先 obscure）｜crypt、加密网盘、加密文件名
+rclone config create <名称> crypt remote <底层远程>:<路径> filename_encryption standard directory_name_encryption true password "$(rclone obscure <密码>)" password2 "$(rclone obscure <盐密码>)"
+
+# 查看密文文件名对应明文｜cryptdecode、加密盘、文件名
+rclone cryptdecode <加密远程>: <密文文件名>
+
+# 列表时显示明文/密文对照｜crypt-show-mapping、调试加密
+rclone ls <加密远程>: --crypt-show-mapping -vv
+
+# 编码/解码文件名（后端命令）｜backend encode、decode、加密名
+rclone backend encode <加密远程>: <明文文件名>
+
+% rclone, 高级, 冷门
+
+# 调用后端专属命令｜backend、noop、后端扩展
+rclone backend <子命令> <远程>:<路径>
+
+# 修改对象存储层级｜settier、归档、Glacier、冷存储
+rclone settier <层级> <远程>:<路径>
+
+# 去重重复文件｜dedupe、重复、同名
+rclone dedupe <远程>:<路径> --dedupe-mode newest
+
+# 复制时批量改名｜name-transform、大小写、重命名
+rclone copy <源> <目标> --name-transform all,lower --dry-run
+
+# 打包成压缩包存到远程｜archive create、zip、打包
+rclone archive create <源路径> <远程>:<包名>.zip
+
+# 在线解压远程压缩包｜archive extract、解压、zip
+rclone archive extract <远程>:<包名>.zip <目标路径>
+
+# 查看压缩包内容｜archive list、不解压、看清单
+rclone archive list --long <远程>:<包名>.zip
+
+# 生成 shell 补全脚本｜completion、自动补全、zsh
+rclone completion zsh > ~/.zfunc/_rclone
+
+# 自更新到最新版｜selfupdate、升级、更新
+rclone selfupdate
+
+# 跑内置诊断测试｜test info、测速、文件名长度
+rclone test info <远程>:
+
+# 启动远程控制 API 服务｜rcd、HTTP API、自动化
+rclone rcd --rc-addr :5572
+
+# 查看 API 传输统计｜rc core/stats、进度、速率
+rclone rc core/stats
+
+# 列出/停止后台任务｜rc job/list、job/stop、任务
+rclone rc job/list
+
+% rclone, 危险
+
+# 保护目标已有文件不被改｜immutable、只增不改、防覆盖
+rclone copy <源> <目标> --immutable
+
+# 同步前把删除项移到备份区｜backup-dir、误删恢复、保险
+rclone sync <源> <目标> --backup-dir <备份目录> --suffix .bak -P

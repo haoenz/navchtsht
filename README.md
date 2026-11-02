@@ -4,7 +4,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 我自己维护的中文 [navi](https://github.com/denisidoro/navi) cheatsheet 仓库。
-现有片段覆盖 15 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
+现有片段覆盖 16 个工具，每个工具一个 `.cheat` 文件，边用边查，同时也是编写 cheat 文件的语法参考。
 
 两种检索方式并存：
 
@@ -31,7 +31,8 @@
     ├── zellij.cheat   # 终端多路复用：会话、面板、布局、插件
     ├── tmux.cheat     # 终端多路复用：会话、窗口、面板、复制模式
     ├── screen.cheat   # 终端多路复用：C-a 键位、远程控制
-    └── atuin.cheat    # shell 历史：搜索、同步、统计、脚本、AI 线程
+    ├── atuin.cheat    # shell 历史：搜索、同步、统计、脚本、AI 线程
+    └── rclone.cheat   # 云存储：远程配置、复制同步、挂载、serve、加密
 ```
 
 | 工具 | 一句话用途 | 典型反查词 |
@@ -51,6 +52,7 @@
 | tmux | 终端多路复用 | 分屏、会话、复制模式、快捷键 |
 | screen | 终端多路复用 | 恢复会话、分屏、C-a 键位、远程控制 |
 | atuin | shell 历史搜索与同步 | 搜索历史、Ctrl-R、清理重复、年度回顾 |
+| rclone | 云存储同步、挂载、服务 | 同步网盘、挂载、限速、过滤、加密 |
 
 ## 依赖
 
